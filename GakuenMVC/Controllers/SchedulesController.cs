@@ -6,19 +6,19 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-//using DLLGakuen.Context;
+using DLLGakuen;
 using DLLGakuen.Entity;
 
 namespace GakuenMVC.Controllers
 {
     public class SchedulesController : Controller
     {
-       /* private GakuenContext db = new GakuenContext();
+       private readonly IServiceGateway<Schedule> _scheduleServiceGateway = new DllFacade().GetScheduleServiceGateway();
 
         // GET: Schedules
         public ActionResult Index()
         {
-            return View(db.Schedules.ToList());
+            return View(_scheduleServiceGateway.Read());
         }
 
         // GET: Schedules/Details/5
@@ -28,7 +28,7 @@ namespace GakuenMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Schedule schedule = db.Schedules.Find(id);
+            Schedule schedule = _scheduleServiceGateway.Read(id.Value);
             if (schedule == null)
             {
                 return HttpNotFound();
@@ -51,8 +51,7 @@ namespace GakuenMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Schedules.Add(schedule);
-                db.SaveChanges();
+                _scheduleServiceGateway.Create(schedule);
                 return RedirectToAction("Index");
             }
 
@@ -66,7 +65,7 @@ namespace GakuenMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Schedule schedule = db.Schedules.Find(id);
+            Schedule schedule = _scheduleServiceGateway.Read(id.Value);
             if (schedule == null)
             {
                 return HttpNotFound();
@@ -83,8 +82,7 @@ namespace GakuenMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(schedule).State = EntityState.Modified;
-                db.SaveChanges();
+                _scheduleServiceGateway.Update(schedule);
                 return RedirectToAction("Index");
             }
             return View(schedule);
@@ -97,7 +95,7 @@ namespace GakuenMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Schedule schedule = db.Schedules.Find(id);
+            Schedule schedule = _scheduleServiceGateway.Read(id.Value);
             if (schedule == null)
             {
                 return HttpNotFound();
@@ -110,19 +108,9 @@ namespace GakuenMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Schedule schedule = db.Schedules.Find(id);
-            db.Schedules.Remove(schedule);
-            db.SaveChanges();
+            _scheduleServiceGateway.Delete(id);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }*/
     }
 }
