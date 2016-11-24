@@ -6,18 +6,20 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using DLLGakuen;
 using DLLGakuen.Entity;
 
 namespace GakuenMVC.Controllers
 {
     public class NewsMessagesController : Controller
     {
-      /*  private GakuenContext db = new GakuenContext();
+        private readonly IServiceGateway<NewsMessage> _newsMessageServiceGateway =
+            new DllFacade().GetNewsMessageServiceGateway();
 
         // GET: NewsMessages
         public ActionResult Index()
         {
-            return View(db.NewsMessages.ToList());
+            return View(_newsMessageServiceGateway.Read());
         }
 
         // GET: NewsMessages/Details/5
@@ -27,7 +29,7 @@ namespace GakuenMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NewsMessage newsMessage = db.NewsMessages.Find(id);
+            NewsMessage newsMessage = _newsMessageServiceGateway.Read(id.Value);
             if (newsMessage == null)
             {
                 return HttpNotFound();
@@ -50,8 +52,7 @@ namespace GakuenMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.NewsMessages.Add(newsMessage);
-                db.SaveChanges();
+                _newsMessageServiceGateway.Create(newsMessage);
                 return RedirectToAction("Index");
             }
 
@@ -65,7 +66,7 @@ namespace GakuenMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NewsMessage newsMessage = db.NewsMessages.Find(id);
+            NewsMessage newsMessage = _newsMessageServiceGateway.Read(id.Value);
             if (newsMessage == null)
             {
                 return HttpNotFound();
@@ -82,8 +83,7 @@ namespace GakuenMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(newsMessage).State = EntityState.Modified;
-                db.SaveChanges();
+                _newsMessageServiceGateway.Update(newsMessage);
                 return RedirectToAction("Index");
             }
             return View(newsMessage);
@@ -96,7 +96,7 @@ namespace GakuenMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NewsMessage newsMessage = db.NewsMessages.Find(id);
+            NewsMessage newsMessage = _newsMessageServiceGateway.Read(id.Value);
             if (newsMessage == null)
             {
                 return HttpNotFound();
@@ -109,19 +109,9 @@ namespace GakuenMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            NewsMessage newsMessage = db.NewsMessages.Find(id);
-            db.NewsMessages.Remove(newsMessage);
-            db.SaveChanges();
+            _newsMessageServiceGateway.Delete(id);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }*/
     }
 }

@@ -6,18 +6,19 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using DLLGakuen;
 using DLLGakuen.Entity;
 
 namespace GakuenMVC.Controllers
 {
     public class UsersController : Controller
     {
-      /*  private GakuenContext db = new GakuenContext();
+        private readonly IServiceGateway<User> _userServiceGateway = new DllFacade().GetUserServiceGateway();
 
         // GET: Users
         public ActionResult Index()
         {
-            var users = db.Users.Include(u => u.Address).Include(u => u.Schedule);
+            var users = _userServiceGateway.Read();
             return View(users.ToList());
         }
 
@@ -28,7 +29,7 @@ namespace GakuenMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
+            User user = _userServiceGateway.Read(id.Value);
             if (user == null)
             {
                 return HttpNotFound();
@@ -39,8 +40,7 @@ namespace GakuenMVC.Controllers
         // GET: Users/Create
         public ActionResult Create()
         {
-            ViewBag.AddressId = new SelectList(db.Addresses, "Id", "Street1");
-            ViewBag.ScheduleId = new SelectList(db.Schedules, "Id", "Id");
+           
             return View();
         }
 
@@ -53,13 +53,11 @@ namespace GakuenMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Users.Add(user);
-                db.SaveChanges();
+                _userServiceGateway.Create(user);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.AddressId = new SelectList(db.Addresses, "Id", "Street1", user.AddressId);
-            ViewBag.ScheduleId = new SelectList(db.Schedules, "Id", "Id", user.ScheduleId);
+          
             return View(user);
         }
 
@@ -70,13 +68,12 @@ namespace GakuenMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
+            User user = _userServiceGateway.Read(id.Value);
             if (user == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.AddressId = new SelectList(db.Addresses, "Id", "Street1", user.AddressId);
-            ViewBag.ScheduleId = new SelectList(db.Schedules, "Id", "Id", user.ScheduleId);
+          
             return View(user);
         }
 
@@ -89,12 +86,10 @@ namespace GakuenMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(user).State = EntityState.Modified;
-                db.SaveChanges();
+                _userServiceGateway.Update(user);
                 return RedirectToAction("Index");
             }
-            ViewBag.AddressId = new SelectList(db.Addresses, "Id", "Street1", user.AddressId);
-            ViewBag.ScheduleId = new SelectList(db.Schedules, "Id", "Id", user.ScheduleId);
+           
             return View(user);
         }
 
@@ -105,7 +100,7 @@ namespace GakuenMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
+            User user = _userServiceGateway.Read(id.Value);
             if (user == null)
             {
                 return HttpNotFound();
@@ -118,19 +113,10 @@ namespace GakuenMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            User user = db.Users.Find(id);
-            db.Users.Remove(user);
-            db.SaveChanges();
+            _userServiceGateway.Delete(id);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }*/
+       
     }
 }

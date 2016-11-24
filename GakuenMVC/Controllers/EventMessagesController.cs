@@ -6,18 +6,19 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using DLLGakuen;
 using DLLGakuen.Entity;
 
 namespace GakuenMVC.Controllers
 {
     public class EventMessagesController : Controller
     {
-     /*   private GakuenContext db = new GakuenContext();
+        private readonly IServiceGateway<EventMessage> _eventMessageServiceGateway = new DllFacade().GetEventMessageServiceGateway();
 
         // GET: EventMessages
         public ActionResult Index()
         {
-            return View(db.EventMessages.ToList());
+            return View(_eventMessageServiceGateway.Read());
         }
 
         // GET: EventMessages/Details/5
@@ -27,7 +28,7 @@ namespace GakuenMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EventMessage eventMessage = db.EventMessages.Find(id);
+            EventMessage eventMessage = _eventMessageServiceGateway.Read(id.Value);
             if (eventMessage == null)
             {
                 return HttpNotFound();
@@ -50,8 +51,7 @@ namespace GakuenMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.EventMessages.Add(eventMessage);
-                db.SaveChanges();
+                _eventMessageServiceGateway.Create(eventMessage);
                 return RedirectToAction("Index");
             }
 
@@ -65,7 +65,7 @@ namespace GakuenMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EventMessage eventMessage = db.EventMessages.Find(id);
+            EventMessage eventMessage = _eventMessageServiceGateway.Read(id.Value);
             if (eventMessage == null)
             {
                 return HttpNotFound();
@@ -82,8 +82,7 @@ namespace GakuenMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(eventMessage).State = EntityState.Modified;
-                db.SaveChanges();
+                _eventMessageServiceGateway.Update(eventMessage);
                 return RedirectToAction("Index");
             }
             return View(eventMessage);
@@ -96,7 +95,7 @@ namespace GakuenMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EventMessage eventMessage = db.EventMessages.Find(id);
+            EventMessage eventMessage = _eventMessageServiceGateway.Read(id.Value);
             if (eventMessage == null)
             {
                 return HttpNotFound();
@@ -109,19 +108,10 @@ namespace GakuenMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            EventMessage eventMessage = db.EventMessages.Find(id);
-            db.EventMessages.Remove(eventMessage);
-            db.SaveChanges();
+            _eventMessageServiceGateway.Delete(id);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }*/
+        
     }
 }
