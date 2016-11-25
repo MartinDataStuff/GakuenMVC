@@ -19,7 +19,7 @@ namespace DLLGakuen.ServiceGateway
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri(_azure.Uri);
+                client.BaseAddress = new Uri(_azure.DataBaseUri);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -36,7 +36,7 @@ namespace DLLGakuen.ServiceGateway
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri(_azure.Uri);
+                client.BaseAddress = new Uri(_azure.DataBaseUri);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -53,7 +53,7 @@ namespace DLLGakuen.ServiceGateway
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri(_azure.Uri);
+                client.BaseAddress = new Uri(_azure.DataBaseUri);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -70,7 +70,7 @@ namespace DLLGakuen.ServiceGateway
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri(_azure.Uri);
+                client.BaseAddress = new Uri(_azure.DataBaseUri);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(
                     new MediaTypeWithQualityHeaderValue("application/json"));
@@ -88,7 +88,7 @@ namespace DLLGakuen.ServiceGateway
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri(_azure.Uri);
+                client.BaseAddress = new Uri(_azure.DataBaseUri);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(
                     new MediaTypeWithQualityHeaderValue("application/json"));

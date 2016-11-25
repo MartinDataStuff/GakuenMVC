@@ -8,7 +8,9 @@ namespace DLLGakuen.ServiceGateway
 {
     public class UriAzure
     {
-        public string Uri { get; set; } = "http://gakuenapi.azurewebsites.net/";
+        public string DataBaseUri { get; set; } = "http://gakuenapi.azurewebsites.net/";
+        public string MessageUri { get; set; } = "";
+
 
     }
 }

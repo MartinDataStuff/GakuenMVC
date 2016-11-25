@@ -34,5 +34,10 @@ namespace DLLGakuen
         {
             return  new UserServiceGateway();
         }
+
+        public IServiceGateway<AdminUser> GetAdminUserServiceGateway()
+        {
+            return new AdminUserServiceGateway();
+        }
     }
 }

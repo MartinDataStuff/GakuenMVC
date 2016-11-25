@@ -60,6 +60,7 @@
     <Compile Include="DllFacade.cs" />
     <Compile Include="Entity\AbstractEntity.cs" />
     <Compile Include="Entity\Address.cs" />
+    <Compile Include="Entity\AdminUser.cs" />
     <Compile Include="Entity\EventMessage.cs" />
     <Compile Include="Entity\NewsMessage.cs" />
     <Compile Include="Entity\Schedule.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="IServiceGateway.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceGateway\AddressGateway.cs" />
+    <Compile Include="ServiceGateway\AdminUserServiceGateway.cs" />
     <Compile Include="ServiceGateway\EventMessageServiceGateway.cs" />
     <Compile Include="ServiceGateway\NewsMessageServiceGateway.cs" />
     <Compile Include="ServiceGateway\ScheduleServiceGateway.cs" />

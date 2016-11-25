@@ -9,13 +9,12 @@ using DLLGakuen.Entity;
 
 namespace DLLGakuen.ServiceGateway
 {
-    class EventMessageServiceGateway : IServiceGateway<EventMessage>
+    class AdminUserServiceGateway : IServiceGateway<AdminUser>
     {
         private readonly UriAzure _azure =
        new UriAzure();
 
-
-        public EventMessage Create(EventMessage t)
+        public AdminUser Create(AdminUser t)
         {
             using (var client = new HttpClient())
             {
@@ -23,16 +22,16 @@ namespace DLLGakuen.ServiceGateway
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                HttpResponseMessage response = client.PostAsJsonAsync("api/eventMessages", t).Result;
+                HttpResponseMessage response = client.PostAsJsonAsync("api/adminusers", t).Result;
                 if (response.IsSuccessStatusCode)
                 {
-                    return response.Content.ReadAsAsync<EventMessage>().Result;
+                    return response.Content.ReadAsAsync<AdminUser>().Result;
                 }
             }
             return null;
         }
 
-        public EventMessage Read(int id)
+        public AdminUser Read(int id)
         {
             using (var client = new HttpClient())
             {
@@ -40,16 +39,16 @@ namespace DLLGakuen.ServiceGateway
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                var response = client.GetAsync($"/api/eventMessages/{id}").Result;
+                var response = client.GetAsync($"/api/adminusers/{id}").Result;
                 if (response.IsSuccessStatusCode)
                 {
-                    return response.Content.ReadAsAsync<EventMessage>().Result;
+                    return response.Content.ReadAsAsync<AdminUser>().Result;
                 }
                 return null;
             }
         }
 
-        public List<EventMessage> Read()
+        public List<AdminUser> Read()
         {
             using (var client = new HttpClient())
             {
@@ -57,16 +56,16 @@ namespace DLLGakuen.ServiceGateway
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                var response = client.GetAsync("/api/eventMessages").Result;
+                var response = client.GetAsync("/api/adminusers").Result;
                 if (response.IsSuccessStatusCode)
                 {
-                    return response.Content.ReadAsAsync<List<EventMessage>>().Result;
+                    return response.Content.ReadAsAsync<List<AdminUser>>().Result;
                 }
             }
-            return new List<EventMessage>();
+            return new List<AdminUser>();
         }
 
-        public EventMessage Update(EventMessage t)
+        public AdminUser Update(AdminUser t)
         {
             using (var client = new HttpClient())
             {
@@ -75,10 +74,10 @@ namespace DLLGakuen.ServiceGateway
                 client.DefaultRequestHeaders.Accept.Add(
                     new MediaTypeWithQualityHeaderValue("application/json"));
 
-                var response = client.PutAsJsonAsync($"/api/eventMessages/{t.Id}", t).Result;
+                var response = client.PutAsJsonAsync($"/api/adminusers/{t.Id}", t).Result;
                 if (response.IsSuccessStatusCode)
                 {
-                    return response.Content.ReadAsAsync<EventMessage>().Result;
+                    return response.Content.ReadAsAsync<AdminUser>().Result;
                 }
                 return t;
             }
@@ -93,10 +92,10 @@ namespace DLLGakuen.ServiceGateway
                 client.DefaultRequestHeaders.Accept.Add(
                     new MediaTypeWithQualityHeaderValue("application/json"));
 
-                var response = client.DeleteAsync($"/api/eventMessages/{id}").Result;
+                var response = client.DeleteAsync($"/api/adminusers/{id}").Result;
                 if (response.IsSuccessStatusCode)
                 {
-                    return response.Content.ReadAsAsync<EventMessage>().Result != null;
+                    return response.Content.ReadAsAsync<AdminUser>().Result != null;
                 }
                 return false;
             }
