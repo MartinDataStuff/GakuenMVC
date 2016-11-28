@@ -5,6 +5,8 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using DLLGakuen;
+using DLLGakuen.Entity;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -15,6 +17,9 @@ namespace GakuenMVC.Controllers
     
     public class AccountController : Controller
     {
+        private IServiceGateway<User> _user = new DllFacade().GetUserServiceGateway();
+
+
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -151,7 +156,14 @@ namespace GakuenMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, UsrName = model.UsrName, Password = model.Password,
+                    FirstName = model.FirstName, LastName = model.LastName, Address = model.Address, PhoneNr = model.PhoneNr};
+
+                var userSave = new User {Email = user.Email, UsrName = user.UsrName, FirstName = user.FirstName, LastName = user.LastName,
+                    Password = user.Password, Address = user.Address, PhoneNr = user.PhoneNr, Confirmed = false};
+
+                _user.Create(userSave);
+
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
