@@ -12,7 +12,7 @@ using GakuenMVC.Models;
 
 namespace GakuenMVC.Controllers
 {
-    [Authorize]
+    
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;

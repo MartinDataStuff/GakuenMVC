@@ -1,16 +1,33 @@
 ﻿using System;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
+using System.Web.Http.Description;
+using System.Collections.Generic;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Data.Entity.Infrastructure;
+using System.Linq;
+using System.Net;
 using System.Web;
+using System.Web.Http;
+using System.Web.Http.Description;
 using System.Web.Mvc;
 using DLLGakuen;
 using DLLGakuen.Entity;
 
 namespace GakuenMVC.Controllers
 {
+    [AllowAnonymous]
     public class NewsMessagesController : Controller
     {
         private readonly IServiceGateway<NewsMessage> _newsMessageServiceGateway =
