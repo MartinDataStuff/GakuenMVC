@@ -1,8 +1,35 @@
-﻿body {
+﻿@font-face {
+    font-family: 'diablo'; /*a name to be used later*/
+    src: url('/fonts/diablo.ttf'); /*URL to font*/
+}
+
+#wrapper {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+body {
     background-color: #ffffff;
 }
 
 .jumbotron {
-    background-color:#ffffff !important;
-    color: #000000
+    background-color: #ffffff !important;
+    color: #000000;
+    font-family: diablo;
+    text-align: center;
+}
+
+b {
+    font-family: diablo;
+}
+
+h1 {
+    font-family: diablo;
+}
+
+button {
+    background: transparent;
+    border: none !important;
 }

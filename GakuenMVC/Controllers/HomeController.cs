@@ -1,16 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Net;
 using System.Web.Mvc;
+using DLLGakuen;
+using DLLGakuen.Entity;
 
 namespace GakuenMVC.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IServiceGateway<NewsMessage> _newsMessageServiceGateway =
+            new DllFacade().GetNewsMessageServiceGateway();
         public ActionResult Index()
         {
-            return View();
+            return View(_newsMessageServiceGateway.Read());
         }
 
         public ActionResult About()
@@ -25,6 +26,20 @@ namespace GakuenMVC.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public ActionResult NewsFeed(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            NewsMessage news = _newsMessageServiceGateway.Read(id.Value);
+            if (news == null)
+            {
+                return HttpNotFound();
+            }
+            return View(id.Value);
         }
     }
 }

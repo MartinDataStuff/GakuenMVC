@@ -1,13 +1,29 @@
-﻿@{
+﻿@model IEnumerable<DLLGakuen.Entity.NewsMessage>
+@{
     ViewBag.Title = "Home Page";
 }
 
 <head>
     @Styles.Render("~/Content/HomePage.css")
 </head>
+@{ int count = 0;}
+
 <body>
     <div class="jumbotron">
-        <h1>This is homepage!</h1>
-        <p>Gauken!</p>
+        
+        <h1>Nyheder</h1>
+
+        @foreach (var item in Model.Reverse())
+        {
+            <button class="col-md-4">
+                <h2>
+                    <b>@Html.DisplayFor(modelItem => item.Title)</b>
+                </h2>
+
+                <p id="wrapper">@Html.DisplayFor(modelItem => item.Body)</p>
+            </button>
+        }
+
     </div>
+    <div class="row"></div>
 </body>
