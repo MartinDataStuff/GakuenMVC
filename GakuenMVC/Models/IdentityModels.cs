@@ -29,5 +29,7 @@ namespace GakuenMVC.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<DLLGakuen.Entity.AdminUser> AdminUsers { get; set; }
     }
 }
