@@ -18,11 +18,9 @@ namespace DLLGakuen.Entity
         public string PhoneNr { get; set; }
 
        
-        public int AddressId { get; set; }
         public Address Address { get; set; }
 
         
-        public int ScheduleId { get; set; }
         public Schedule Schedule { get; set; }
 
         public enum Positions
