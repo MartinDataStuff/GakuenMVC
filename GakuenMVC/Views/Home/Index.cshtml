@@ -10,17 +10,16 @@
 
 <body>
     <div class="jumbotron">
-        
-        <h1>Nyheder</h1>
 
         @foreach (var item in Model.Reverse())
         {
             <button class="col-md-4">
-                <h2>
-                    <b>@Html.DisplayFor(modelItem => item.Title)</b>
-                </h2>
-
-                <p id="wrapper">@Html.DisplayFor(modelItem => item.Body)</p>
+                <a href="@Url.Action("NewsFeed", new {id = item.Id, ViewBag.Currency})">
+                    <p id="magic">
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </p>
+                    <p id="wrapper">@Html.DisplayFor(modelItem => item.Body)</p>
+                </a>
             </button>
         }
 

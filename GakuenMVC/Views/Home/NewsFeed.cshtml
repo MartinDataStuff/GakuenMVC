@@ -1,9 +1,13 @@
-﻿@model IEnumerable<DLLGakuen.Entity.NewsMessage>
+﻿@model DLLGakuen.Entity.NewsMessage
 @{
     ViewBag.Title = "NewsFeed";
 }
-
-@Html.DisplayNameFor(model => model.Title)
-<br/>
-@Html.DisplayNameFor(model => model.Body)
-
+<head>
+    @Styles.Render("~/Content/HomePage.css")
+</head>
+<body>
+    <div class="jumbotron">
+        <p id="magic">@Html.DisplayFor(model => model.Title)</p>
+        <p>@Html.DisplayFor(model => model.Body)</p>
+    </div>
+</body>
