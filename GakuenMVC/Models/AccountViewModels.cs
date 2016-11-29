@@ -1,6 +1,8 @@
 ﻿using DLLGakuen.Entity;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Net;
+using System.Web.Mvc;
 using static DLLGakuen.Entity.User;
 
 namespace GakuenMVC.Models
@@ -79,7 +81,7 @@ namespace GakuenMVC.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
         [Required]
@@ -88,6 +90,8 @@ namespace GakuenMVC.Models
         public string LastName { get; set; }
         public Address Address { get; set; }
         public string PhoneNr { get; set; }
+       
+        public bool isAdmin { get; set; }
     }
 
     public class ResetPasswordViewModel
@@ -105,7 +109,7 @@ namespace GakuenMVC.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }
