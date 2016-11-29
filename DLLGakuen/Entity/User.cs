@@ -29,5 +29,7 @@ namespace DLLGakuen.Entity
         }
 
         public Positions Position { get; set; }
+
+        public bool isAdmin { get; set; }
     }
 }

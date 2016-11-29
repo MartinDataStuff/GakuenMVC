@@ -31,7 +31,7 @@ namespace GakuenMVC.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("Data Source=.;Initial Catalog=Gakuen-ByConnectionString;Integrated Security=true", throwIfV1Schema: false)
         {
         }
 
