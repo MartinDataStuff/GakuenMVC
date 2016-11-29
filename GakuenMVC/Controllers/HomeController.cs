@@ -28,6 +28,7 @@ namespace GakuenMVC.Controllers
             return View();
         }
 
+        // GET: Home/NewsFeed/5
         public ActionResult NewsFeed(int? id)
         {
             if (id == null)
@@ -39,7 +40,7 @@ namespace GakuenMVC.Controllers
             {
                 return HttpNotFound();
             }
-            return View(id.Value);
+            return View(news);
         }
     }
 }

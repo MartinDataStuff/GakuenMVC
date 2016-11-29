@@ -1,6 +1,6 @@
 ﻿@font-face {
-    font-family: 'diablo'; /*a name to be used later*/
-    src: url('/fonts/diablo.ttf'); /*URL to font*/
+    font-family: 'magic'; /*a name to be used later*/
+    src: url('/fonts/MagicSchoolOne.ttf'); /*URL to font*/
 }
 
 #wrapper {
@@ -17,19 +17,25 @@ body {
 .jumbotron {
     background-color: #ffffff !important;
     color: #000000;
-    font-family: diablo;
     text-align: center;
 }
 
-b {
-    font-family: diablo;
-}
-
-h1 {
-    font-family: diablo;
+#magic {
+    font-family: magic;
+    font-size: 300%;
 }
 
 button {
     background: transparent;
     border: none !important;
 }
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+    a:hover {
+        text-decoration: none;
+        color: #000080;
+    }
