@@ -39,5 +39,10 @@ namespace DLLGakuen
         {
             return new AdminUserServiceGateway();
         }
+
+        public IServiceGateway<ImageToHost> GetImageTohostServiceGateway()
+        {
+            return new ImageToHostServiceGateway();
+        }
     }
 }
