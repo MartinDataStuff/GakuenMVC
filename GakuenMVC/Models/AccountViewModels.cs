@@ -91,7 +91,6 @@ namespace GakuenMVC.Models
         public Address Address { get; set; }
         public string PhoneNr { get; set; }
        
-        public bool isAdmin { get; set; }
     }
 
     public class ResetPasswordViewModel

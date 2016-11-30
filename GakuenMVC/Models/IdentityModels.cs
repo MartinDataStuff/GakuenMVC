@@ -31,7 +31,7 @@ namespace GakuenMVC.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("name=Gauken", throwIfV1Schema: false)
+            : base("Gakuen", throwIfV1Schema: false)
         {
         }
 
