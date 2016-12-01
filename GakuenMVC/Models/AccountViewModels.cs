@@ -1,6 +1,8 @@
-﻿using DLLGakuen.Entity;
+﻿using System;
+using DLLGakuen.Entity;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using static DLLGakuen.Entity.User;
@@ -90,7 +92,16 @@ namespace GakuenMVC.Models
         public string LastName { get; set; }
         public Address Address { get; set; }
         public string PhoneNr { get; set; }
-       
+        public int ContactPersonPhoneNumber { get; set; }
+        public DateTime Birthday { get; set; }        
+        
+        
+
+
+
+
+
+
     }
 
     public class ResetPasswordViewModel

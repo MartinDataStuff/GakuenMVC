@@ -157,10 +157,12 @@ namespace GakuenMVC.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.UsrName, Email = model.Email, UsrName = model.UsrName, Password = model.Password,
-                    FirstName = model.FirstName, LastName = model.LastName, Address = model.Address, PhoneNr = model.PhoneNr};
+                    FirstName = model.FirstName, LastName = model.LastName, Address = model.Address, PhoneNr = model.PhoneNr,
+                    ContactPersonPhoneNumber = model.ContactPersonPhoneNumber, Birthday = model.Birthday};
 
                 var userSave = new User {Email = user.Email, UsrName = user.UsrName, FirstName = user.FirstName, LastName = user.LastName,
-                    Password = user.Password, Address = user.Address, PhoneNr = user.PhoneNr, Confirmed = false};
+                    Password = user.Password, Address = user.Address, PhoneNr = user.PhoneNr, ContactPersonPhoneNumber = user.ContactPersonPhoneNumber,
+                Birthday = user.Birthday};
 
                 _user.Create(userSave);
 

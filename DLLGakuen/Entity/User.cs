@@ -13,12 +13,15 @@ namespace DLLGakuen.Entity
         public string Email { get; set; }
         public string UsrName { get; set; }
         public string Password { get; set; }
-        public bool Confirmed { get; set; }
         public string PaidStringCode { get; set; }
         public string PhoneNr { get; set; }
 
        
         public Address Address { get; set; }
+
+        public int ContactPersonPhoneNumber { get; set; }
+
+        public DateTime Birthday { get; set; }
 
         
         public Schedule Schedule { get; set; }
