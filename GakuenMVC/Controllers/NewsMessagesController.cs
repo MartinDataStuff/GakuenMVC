@@ -9,6 +9,7 @@ namespace GakuenMVC.Controllers
     {
         private readonly IServiceGateway<NewsMessage> _newsMessageServiceGateway =
             new DllFacade().GetNewsMessageServiceGateway();
+        private readonly IServiceGateway<ImageToHost> _imageToHostServiceGateway = new DllFacade().GetImageTohostServiceGateway();
 
         // GET: NewsMessages
         public ActionResult Index()
@@ -42,11 +43,14 @@ namespace GakuenMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Body")] NewsMessage newsMessage)
+        public ActionResult Create([Bind(Include = "Id,Title,Body")] NewsMessage newsMessage,[Bind(Include = "Id,ImagePath")] ImageToHost imageToHost)
         {
             if (ModelState.IsValid)
             {
-                _newsMessageServiceGateway.Create(newsMessage);
+               var news =  _newsMessageServiceGateway.Create(newsMessage);
+                var image = _imageToHostServiceGateway.Create(imageToHost);
+                news.ImageToHost = image;
+                _newsMessageServiceGateway.Update(news);
                 return RedirectToAction("Index");
             }
 

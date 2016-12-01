@@ -71,6 +71,7 @@
     <Compile Include="ServiceGateway\AddressGateway.cs" />
     <Compile Include="ServiceGateway\AdminUserServiceGateway.cs" />
     <Compile Include="ServiceGateway\EventMessageServiceGateway.cs" />
+    <Compile Include="ServiceGateway\ImageToHostServiceGateway.cs" />
     <Compile Include="ServiceGateway\NewsMessageServiceGateway.cs" />
     <Compile Include="ServiceGateway\ScheduleServiceGateway.cs" />
     <Compile Include="ServiceGateway\UriAzure.cs" />
