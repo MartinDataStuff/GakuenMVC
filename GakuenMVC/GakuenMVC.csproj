@@ -314,6 +314,7 @@
     <Content Include="Views\ConfirmPayment\Index.cshtml" />
     <Content Include="Views\ConfirmPayment\Validate.cshtml" />
     <Content Include="Views\ConfirmPayment\BuyList.cshtml" />
+    <Content Include="Views\ConfirmPayment\ConfirmBuy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

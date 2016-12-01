@@ -31,17 +31,16 @@
         <th>Buy</th>
     </tr>
     @{
-        int x = -1;
-
-        Product Item = new Product();
-            x++;
+        List<Product> products = ViewBag.Products;
+        foreach (var pro in products)
+        {
             <tr>
-                <td>@Item.Info</td>
-                <td>@Item.Name</td>
-                <td>@Item.Price</td>
+                <td>@pro.Info</td>
+                <td>@pro.Name</td>
+                <td>@pro.Price</td>
                 <td><input type="checkbox" name="BuyBox[x]" value="Buy"></td>
             </tr>
-        
+        }
     }
     <form action="ConfirmBuy" method="post">
         @{
