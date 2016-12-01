@@ -30,23 +30,29 @@
         <th>Price</th>
         <th>Buy</th>
     </tr>
-    @{
-        List<Product> products = ViewBag.Products;
-        foreach (var pro in products)
-        {
-            <tr>
-                <td>@pro.Info</td>
-                <td>@pro.Name</td>
-                <td>@pro.Price</td>
-                <td><input type="checkbox" name="BuyBox[x]" value="Buy"></td>
-            </tr>
-        }
-    }
     <form action="ConfirmBuy" method="post">
         @{
-            List<bool> checkbox = new List<bool>();
+            List<Product> products = ViewBag.Products;
+            int x = -1;
+            foreach (var pro in products)
+            {
+                x++;
+                <tr>
+                    <td>@pro.Info</td>
+                    <td>@pro.Name</td>
+                    <td>@pro.Price</td>
+                    <td><input type="checkbox" name="BuyBox@{x}" value="Buy"></td>
+                </tr>
+    }
+        }
 
-            checkbox.Add(true);
+        @{
+            //        List<bool> checkboxs = new List<bool>();
+            //        for (int i = 0; i < products.Count; i++)
+            //        {
+            //            checkboxs.Add(document.getElementById($"BuyBox{x}").value;);
+            //    }
+            //    checkbox.Add(true);
         }
 
         <input type="submit" value="confirm">

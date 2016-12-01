@@ -9,12 +9,12 @@ using DLLGakuen.Entity;
 
 namespace DLLGakuen.ServiceGateway
 {
-    class ProductGateway : IServiceGateway<Product>
+    class OrderListServiceGateway : IServiceGateway<OrderList>
     {
         private readonly UriAzure _azure =
         new UriAzure();
 
-        public Product Create(Product t)
+        public OrderList Create(OrderList t)
         {
             using (var client = new HttpClient())
             {
@@ -22,16 +22,16 @@ namespace DLLGakuen.ServiceGateway
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                HttpResponseMessage response = client.PostAsJsonAsync("api/Productes", t).Result;
+                HttpResponseMessage response = client.PostAsJsonAsync("api/OrderLists", t).Result;
                 if (response.IsSuccessStatusCode)
                 {
-                    return response.Content.ReadAsAsync<Product>().Result;
+                    return response.Content.ReadAsAsync<OrderList>().Result;
                 }
             }
             return null;
         }
 
-        public Product Read(int id)
+        public OrderList Read(int id)
         {
             using (var client = new HttpClient())
             {
@@ -39,16 +39,16 @@ namespace DLLGakuen.ServiceGateway
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                var response = client.GetAsync($"/api/Productes/{id}").Result;
+                var response = client.GetAsync($"/api/OrderLists/{id}").Result;
                 if (response.IsSuccessStatusCode)
                 {
-                    return response.Content.ReadAsAsync<Product>().Result;
+                    return response.Content.ReadAsAsync<OrderList>().Result;
                 }
                 return null;
             }
         }
 
-        public List<Product> Read()
+        public List<OrderList> Read()
         {
             using (var client = new HttpClient())
             {
@@ -56,16 +56,16 @@ namespace DLLGakuen.ServiceGateway
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                var response = client.GetAsync("/api/Productes").Result;
+                var response = client.GetAsync("/api/OrderLists").Result;
                 if (response.IsSuccessStatusCode)
                 {
-                    return response.Content.ReadAsAsync<List<Product>>().Result;
+                    return response.Content.ReadAsAsync<List<OrderList>>().Result;
                 }
             }
-            return new List<Product>();
+            return new List<OrderList>();
         }
 
-        public Product Update(Product t)
+        public OrderList Update(OrderList t)
         {
             using (var client = new HttpClient())
             {
@@ -74,10 +74,10 @@ namespace DLLGakuen.ServiceGateway
                 client.DefaultRequestHeaders.Accept.Add(
                     new MediaTypeWithQualityHeaderValue("application/json"));
 
-                var response = client.PutAsJsonAsync($"/api/Productes/{t.Id}", t).Result;
+                var response = client.PutAsJsonAsync($"/api/OrderLists/{t.Id}", t).Result;
                 if (response.IsSuccessStatusCode)
                 {
-                    return response.Content.ReadAsAsync<Product>().Result;
+                    return response.Content.ReadAsAsync<OrderList>().Result;
                 }
                 return t;
             }
@@ -92,10 +92,10 @@ namespace DLLGakuen.ServiceGateway
                 client.DefaultRequestHeaders.Accept.Add(
                     new MediaTypeWithQualityHeaderValue("application/json"));
 
-                var response = client.DeleteAsync($"/api/Productes/{id}").Result;
+                var response = client.DeleteAsync($"/api/OrderLists/{id}").Result;
                 if (response.IsSuccessStatusCode)
                 {
-                    return response.Content.ReadAsAsync<Product>().Result != null;
+                    return response.Content.ReadAsAsync<OrderList>().Result != null;
                 }
                 return false;
             }

@@ -10,8 +10,8 @@ namespace GakuenMVC.Controllers
 {
     public class ConfirmPaymentController : Controller
     {
-        private readonly IServiceGateway<User> _UserServiceGateway = new DllFacade().GetUserServiceGateway();
-        //private readonly IServiceGateway<Product> _ProductServiceGateway = new DllFacade().GetProductServiceGateway();
+        private readonly IServiceGateway<OrderList> _OrderListServiceGateway = new DllFacade().GetOrderListServiceGateway();
+        private readonly IServiceGateway<Product> _ProductServiceGateway = new DllFacade().GetProductServiceGateway();
         // GET: ConfirmPayment
         public ActionResult Index()
         {
@@ -22,13 +22,13 @@ namespace GakuenMVC.Controllers
         [HttpPost]
         public ActionResult Validate(string Code, FormCollection collection)
         {
-            User yyyy = _UserServiceGateway.Read().Find(x => x.FirstName == Code);
-            List<User> uuuuu = _UserServiceGateway.Read();
-            if (_UserServiceGateway.Read().Find(x => x.FirstName == Code) != null)
+            OrderList yyyy = _OrderListServiceGateway.Read().Find(x => x.PaidStringCode == Code);
+            List<OrderList> uuuuu = _OrderListServiceGateway.Read();
+            if (_OrderListServiceGateway.Read().Find(x => x.PaidStringCode == Code) != null)
             {
                 ViewBag.Code = Code;
 
-                ViewBag.Cash = _UserServiceGateway.Read().Find(x => x.FirstName == Code).FirstName;
+                ViewBag.Cash = _OrderListServiceGateway.Read().Find(x => x.PaidStringCode == Code).PriceToPay;
             }
             else
             {

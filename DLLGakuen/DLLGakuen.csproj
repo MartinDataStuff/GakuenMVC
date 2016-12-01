@@ -71,8 +71,8 @@
     <Compile Include="Entity\VideoToHost.cs" />
     <Compile Include="IServiceGateway.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServiceGateway\OrderListGateway.cs" />
-    <Compile Include="ServiceGateway\ProductGateway.cs" />
+    <Compile Include="ServiceGateway\OrderListServiceGateway.cs" />
+    <Compile Include="ServiceGateway\ProductServiceGateway.cs" />
     <Compile Include="ServiceGateway\AddressGateway.cs" />
     <Compile Include="ServiceGateway\AdminUserServiceGateway.cs" />
     <Compile Include="ServiceGateway\EventMessageServiceGateway.cs" />

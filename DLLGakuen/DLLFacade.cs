@@ -49,5 +49,13 @@ namespace DLLGakuen
         {
             return new VideoToHostServiceGateway();
         }
+        public IServiceGateway<Product> GetProductServiceGateway()
+        {
+            return new ProductServiceGateway();
+        }
+        public IServiceGateway<OrderList> GetOrderListServiceGateway()
+        {
+            return new OrderListServiceGateway();
+        }
     }
 }
