@@ -10,6 +10,7 @@ namespace GakuenMVC.Controllers
         private readonly IServiceGateway<NewsMessage> _newsMessageServiceGateway =
             new DllFacade().GetNewsMessageServiceGateway();
         private readonly IServiceGateway<ImageToHost> _imageToHostServiceGateway = new DllFacade().GetImageTohostServiceGateway();
+        private readonly IServiceGateway<VideoToHost> _videoToHostServiceGateway = new DllFacade().GetVideoToHostServiceGateway();
 
         // GET: NewsMessages
         public ActionResult Index()
@@ -43,13 +44,22 @@ namespace GakuenMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Body")] NewsMessage newsMessage,[Bind(Include = "Id,ImagePath")] ImageToHost imageToHost)
+        public ActionResult Create([Bind(Include = "Id,Title,Body")] NewsMessage newsMessage,[Bind(Include = "Id,ImagePath")] ImageToHost imageToHost, [Bind(Include = "Id,VideoPath")] VideoToHost videoToHost)
         {
             if (ModelState.IsValid)
             {
                var news =  _newsMessageServiceGateway.Create(newsMessage);
-                var image = _imageToHostServiceGateway.Create(imageToHost);
-                news.ImageToHost = image;
+                if (imageToHost.ImagePath != null)
+                {
+                    var image = _imageToHostServiceGateway.Create(imageToHost);
+                    news.ImageToHost = image;
+                }
+
+                if (videoToHost.VideoPath != null)
+                {
+                    var video = _videoToHostServiceGateway.Create(videoToHost);
+                    news.VideoToHost = video;
+                }
                 _newsMessageServiceGateway.Update(news);
                 return RedirectToAction("Index");
             }
