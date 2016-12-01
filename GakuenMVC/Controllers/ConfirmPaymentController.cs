@@ -65,7 +65,7 @@ namespace GakuenMVC.Controllers
 
         // POST: ConfirmPayment/Validate/5
         [HttpPost]
-        public ActionResult ConfirmBuy(Array checkbox, FormCollection collection)
+        public ActionResult ConfirmBuy(FormCollection collection)
         {
 
 
