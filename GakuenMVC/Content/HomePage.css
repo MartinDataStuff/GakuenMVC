@@ -11,13 +11,17 @@
 }
 
 body {
-    background-color: #ffffff;
+    background-color: #c0c0c0;
 }
 
 .jumbotron {
     background-color: #ffffff !important;
     color: #000000;
     text-align: center;
+}
+
+.body-content {
+    background-color: white !important;
 }
 
 #magic {
@@ -39,3 +43,26 @@ a {
         text-decoration: none;
         color: #000080;
     }
+
+
+/*Cutcorner*/
+.cutCorner {
+    position:relative; background-color:blue; 
+    border:1px solid silver; display: inline-block;
+}
+
+.cutCorner img {
+    display:block;
+}
+
+.cutCorner:before {
+    position:absolute; left:-1px; top:-1px; content:'';
+    border-top: 150px solid silver;
+    border-right: 200px solid transparent;
+}
+
+.cutCorner:after {
+    position:absolute; left:-2px; top:-2px; content:'';
+    border-top: 150px solid white;
+    border-right: 200px solid transparent;
+}

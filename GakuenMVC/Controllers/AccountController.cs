@@ -159,8 +159,8 @@ namespace GakuenMVC.Controllers
                 var user = new ApplicationUser { UserName = model.UsrName, Email = model.Email, UsrName = model.UsrName, Password = model.Password,
                     FirstName = model.FirstName, LastName = model.LastName, Address = model.Address, PhoneNr = model.PhoneNr};
 
-                var userSave = new User {Email = user.Email, UsrName = user.UsrName, FirstName = user.FirstName, LastName = user.LastName,
-                    Password = user.Password, Address = user.Address, PhoneNr = user.PhoneNr, Confirmed = false};
+                var userSave = new User {Email = user.Email, UserName = user.UsrName, FirstName = user.FirstName, LastName = user.LastName,
+                    Password = user.Password, Address = user.Address, PhoneNr = user.PhoneNr};
 
                 _user.Create(userSave);
 

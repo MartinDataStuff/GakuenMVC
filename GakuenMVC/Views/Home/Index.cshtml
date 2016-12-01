@@ -9,18 +9,26 @@
 @{ int count = 0;}
 
 <body>
-    <div class="jumbotron">
+    <div class="body-content">
 
         @foreach (var item in Model.Reverse())
         {
-            <button class="col-md-4">
+
+            <div><button class="col-md-4">
                 <a href="@Url.Action("NewsFeed", new {id = item.Id, ViewBag.Currency})">
                     <p id="magic">
                         @Html.DisplayFor(modelItem => item.Title)
                     </p>
                     <p id="wrapper">@Html.DisplayFor(modelItem => item.Body)</p>
                 </a>
-            </button>
+            </button></div>
+
+            @*<div class="col-md-4">
+                    <div class="cutCorner">
+                        <img class="" src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSTHu0iwlV7GRNcZ6b6DxWZ2grx5opLD5F92j9LQgEHzEaM8vaXXw" height="350" width="250" />
+                    </div>
+                    <div style="position: absolute; left: 0; top: 0; max-width: 45%;">@Html.DisplayFor(modelItem => item.Title)</div>
+                </div>*@
         }
 
     </div>
