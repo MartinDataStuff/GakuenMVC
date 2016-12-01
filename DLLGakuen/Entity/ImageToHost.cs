@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DLLGakuen.Entity
 {
-    public class Image : AbstractEntity
+    public class ImageToHost : AbstractEntity
     {
         public string ImageName { get; set; }
         public byte[] Bytes { get; set; }

@@ -62,7 +62,7 @@
     <Compile Include="Entity\Address.cs" />
     <Compile Include="Entity\AdminUser.cs" />
     <Compile Include="Entity\EventMessage.cs" />
-    <Compile Include="Entity\Image.cs" />
+    <Compile Include="Entity\ImageToHost.cs" />
     <Compile Include="Entity\NewsMessage.cs" />
     <Compile Include="Entity\Schedule.cs" />
     <Compile Include="Entity\User.cs" />
