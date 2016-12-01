@@ -14,6 +14,8 @@ namespace GakuenMVC.Controllers
     public class EventMessagesController : Controller
     {
         private readonly IServiceGateway<EventMessage> _eventMessageServiceGateway = new DllFacade().GetEventMessageServiceGateway();
+        private readonly IServiceGateway<ImageToHost> _imageToHostServiceGateway = new DllFacade().GetImageTohostServiceGateway();
+        private readonly IServiceGateway<VideoToHost> _videoToHostServiceGateway = new DllFacade().GetVideoToHostServiceGateway();
 
         // GET: EventMessages
         public ActionResult Index()
@@ -47,11 +49,24 @@ namespace GakuenMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Body")] EventMessage eventMessage)
+        public ActionResult Create([Bind(Include = "Id,Title,Body")] EventMessage eventMessage, [Bind(Include = "Id, ImagePath")] ImageToHost imageToHost, [Bind(Include = "Id,VideoPath")] VideoToHost videoToHost
+            )
         {
             if (ModelState.IsValid)
             {
-                _eventMessageServiceGateway.Create(eventMessage);
+                var eventmessage = _eventMessageServiceGateway.Create(eventMessage);
+                if (imageToHost.ImagePath != null)
+                {
+                    var image = _imageToHostServiceGateway.Create(imageToHost);
+                    eventMessage.ImageToHost = image;
+                }
+
+                if (videoToHost.VideoPath != null)
+                {
+                    var video = _videoToHostServiceGateway.Create(videoToHost);
+                    eventMessage.VideoToHost = video;
+                }
+                _eventMessageServiceGateway.Update(eventmessage);
                 return RedirectToAction("Index");
             }
 

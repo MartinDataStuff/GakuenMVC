@@ -1,0 +1,55 @@
+﻿@using DLLGakuen.Entity
+@{
+    ViewBag.Title = "BuyList";
+}
+
+<h2>BuyList</h2>
+
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
+
+<table>
+    <tr>
+        <th>?</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Buy</th>
+    </tr>
+    @{
+        List<Product> products = ViewBag.Products;
+        foreach (var pro in products)
+        {
+            <tr>
+                <td>@pro.Info</td>
+                <td>@pro.Name</td>
+                <td>@pro.Price</td>
+                <td><input type="checkbox" name="BuyBox[x]" value="Buy"></td>
+            </tr>
+        }
+    }
+    <form action="ConfirmBuy" method="post">
+        @{
+            List<bool> checkbox = new List<bool>();
+
+            checkbox.Add(true);
+        }
+
+        <input type="submit" value="confirm">
+    </form>
+
+</table>

@@ -44,5 +44,10 @@ namespace DLLGakuen
         {
             return new ImageToHostServiceGateway();
         }
+
+        public IServiceGateway<VideoToHost> GetVideoToHostServiceGateway()
+        {
+            return new VideoToHostServiceGateway();
+        }
     }
 }

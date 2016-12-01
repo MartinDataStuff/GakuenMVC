@@ -160,7 +160,8 @@ namespace GakuenMVC.Controllers
                     FirstName = model.FirstName, LastName = model.LastName, Address = model.Address, PhoneNr = model.PhoneNr,
                     ContactPersonPhoneNumber = model.ContactPersonPhoneNumber, Birthday = model.Birthday};
 
-                var userSave = new User {Email = user.Email, UsrName = user.UsrName, FirstName = user.FirstName, LastName = user.LastName,
+                
+                var userSave = new User {Email = user.Email, UserName = user.UsrName, FirstName = user.FirstName, LastName = user.LastName,
                     Password = user.Password, Address = user.Address, PhoneNr = user.PhoneNr, ContactPersonPhoneNumber = user.ContactPersonPhoneNumber,
                 Birthday = user.Birthday};
 

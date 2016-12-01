@@ -5,6 +5,7 @@ using DLLGakuen.Entity;
 
 namespace GakuenMVC.Controllers
 {
+    [RequireHttps]
     public class HomeController : Controller
     {
         private readonly IServiceGateway<NewsMessage> _newsMessageServiceGateway =
