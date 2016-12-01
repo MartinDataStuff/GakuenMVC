@@ -64,6 +64,8 @@
     <Compile Include="Entity\EventMessage.cs" />
     <Compile Include="Entity\ImageToHost.cs" />
     <Compile Include="Entity\NewsMessage.cs" />
+    <Compile Include="Entity\OrderList.cs" />
+    <Compile Include="Entity\Product.cs" />
     <Compile Include="Entity\Schedule.cs" />
     <Compile Include="Entity\User.cs" />
     <Compile Include="IServiceGateway.cs" />

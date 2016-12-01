@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "Validate";
+}
+
+<h2>Edit</h2>
+
+<p>Code = @ViewBag.Code</p>
+<p>Cash = @ViewBag.Cash</p>
+<p>
+
+    <form action="/ConfirmPayment" method="post">
+        <input type="submit" value="Approve">
+    </form>
+</p><p>
+    <form action="/ConfirmPayment" method="post">
+        <input type="submit" value="Cansel">
+    </form>
+</p>
