@@ -48,7 +48,7 @@ namespace GakuenMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-               var news =  _newsMessageServiceGateway.Create(newsMessage);
+               var news =  newsMessage;
                 if (imageToHost.ImagePath != null)
                 {
                     var image = _imageToHostServiceGateway.Create(imageToHost);
@@ -60,7 +60,7 @@ namespace GakuenMVC.Controllers
                     var video = _videoToHostServiceGateway.Create(videoToHost);
                     news.VideoToHost = video;
                 }
-                _newsMessageServiceGateway.Update(news);
+                _newsMessageServiceGateway.Create(news);
                 return RedirectToAction("Index");
             }
 
