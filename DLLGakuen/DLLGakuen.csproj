@@ -64,8 +64,11 @@
     <Compile Include="Entity\EventMessage.cs" />
     <Compile Include="Entity\ImageToHost.cs" />
     <Compile Include="Entity\NewsMessage.cs" />
+    <Compile Include="Entity\OrderList.cs" />
+    <Compile Include="Entity\Product.cs" />
     <Compile Include="Entity\Schedule.cs" />
     <Compile Include="Entity\User.cs" />
+    <Compile Include="Entity\VideoToHost.cs" />
     <Compile Include="IServiceGateway.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceGateway\AddressGateway.cs" />
@@ -76,6 +79,7 @@
     <Compile Include="ServiceGateway\ScheduleServiceGateway.cs" />
     <Compile Include="ServiceGateway\UriAzure.cs" />
     <Compile Include="ServiceGateway\UserServiceGateway.cs" />
+    <Compile Include="ServiceGateway\VideoToHostServiceGateway.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
