@@ -54,19 +54,19 @@ namespace GakuenMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var eventmessage = _eventMessageServiceGateway.Create(eventMessage);
+                var message = eventMessage;
                 if (imageToHost.ImagePath != null)
                 {
                     var image = _imageToHostServiceGateway.Create(imageToHost);
-                    eventMessage.ImageToHost = image;
+                    message.ImageToHost = image;
                 }
 
                 if (videoToHost.VideoPath != null)
                 {
                     var video = _videoToHostServiceGateway.Create(videoToHost);
-                    eventMessage.VideoToHost = video;
+                    message.VideoToHost = video;
                 }
-                _eventMessageServiceGateway.Update(eventmessage);
+                _eventMessageServiceGateway.Create(message);
                 return RedirectToAction("Index");
             }
 
