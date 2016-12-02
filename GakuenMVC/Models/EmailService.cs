@@ -17,20 +17,6 @@ namespace GakuenMVC.Models
 {
     public class EmailService
     {
-      
-        //Version 2
-        //public static string GenerateEmailToken()
-        //{
-        //    // generate an email verification token for the user
-        //    using (RNGCryptoServiceProvider provider = new RNGCryptoServiceProvider())
-        //    {
-        //        byte[] data = new byte[16];
-        //        provider.GetBytes(data);
-        //        return Convert.ToBase64String(data);
-        //    }
-        //}
-
-        
         //Version 5
         public static RestResponse SendSimpleMessage()
         {
@@ -49,6 +35,18 @@ namespace GakuenMVC.Models
             request.AddParameter("text", "Congratulations GakuenEsbjerg, you just sent an email with Mailgun!  You are truly awesome!  You can see a record of this email in your logs: https://mailgun.com/cp/log .  You can send up to 300 emails/day from this sandbox server.  Next, you should add your own domain so you can send 10,000 emails/month for free.");
             request.Method = Method.POST;
             return client.Execute(request) as RestResponse;
+        }
+
+
+        public static string GenerateEmailToken()
+        {
+            // generate an email verification token for the user
+            using (RNGCryptoServiceProvider provider = new RNGCryptoServiceProvider())
+            {
+                byte[] data = new byte[16];
+                provider.GetBytes(data);
+                return Convert.ToBase64String(data);
+            }
         }
     }
 }
