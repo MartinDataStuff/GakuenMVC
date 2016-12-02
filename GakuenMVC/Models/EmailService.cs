@@ -11,10 +11,8 @@ using System.Security.Cryptography;
 using SendGrid;
 using System.IO;
 using System.Net.Mail;
-using Google.Apis.Auth.OAuth2;
-using Google.Apis.Gmail.v1;
-using Google.Apis.Gmail.v1.Data;
-using mailinblue;
+using RestSharp;
+using RestSharp.Authenticators;
 
 namespace GakuenMVC.Models
 {
@@ -101,25 +99,25 @@ namespace GakuenMVC.Models
         //      .Replace("=", "");
         //}
 
-        //Version 4
-        //public void SendMessage()
-        //{
-        //    API sendinBlue = new mailinblue.API("L2tHk6ZE7g5K9F4M");
-        //    Dictionary<string, object> data = new Dictionary<string, object>();
-        //    List<int> listid = new List<int>();
-        //    listid.Add(2);
-        //    listid.Add(7);
-        //    data.Add("html_content", "Congratulations ! You successfully sent this example campaign via the SendinBlue API.");
-        //    data.Add("name", "Campaign sent via the API");
-        //    data.Add("subject", "My subject");
-        //    data.Add("from_name", "From name");
-        //    data.Add("to", "martin1-g@hotmail.com");
-        //    data.Add("from_email", "gakuenreply@gmail.com");
-        //    data.Add("listid", listid);
-        //    data.Add("scheduled_date", "2015-01-01 00:00:01");
-
-        //    Object createCampaign = sendinBlue.create_campaign(data);
-        //    Console.WriteLine(createCampaign);
-        //}
+        
+        //Version 5
+        public static RestResponse SendSimpleMessage()
+        {
+            RestClient client = new RestClient();
+            client.BaseUrl = new Uri("https://api.mailgun.net/v3");
+            client.Authenticator =
+                   new HttpBasicAuthenticator("api",
+                                              "key-8782ae44040d98f33c87a175376e0632");
+            RestRequest request = new RestRequest();
+            request.AddParameter("domain",
+                                "sandbox58007e700f024722a5e7a7226024d8f2.mailgun.org", ParameterType.UrlSegment);
+            request.Resource = "{domain}/messages";
+            request.AddParameter("from", "Mailgun Sandbox <postmaster@sandbox58007e700f024722a5e7a7226024d8f2.mailgun.org>");
+            request.AddParameter("to", "GakuenEsbjerg <gakuenreply@gmail.com>");
+            request.AddParameter("subject", "Hello GakuenEsbjerg");
+            request.AddParameter("text", "Congratulations GakuenEsbjerg, you just sent an email with Mailgun!  You are truly awesome!  You can see a record of this email in your logs: https://mailgun.com/cp/log .  You can send up to 300 emails/day from this sandbox server.  Next, you should add your own domain so you can send 10,000 emails/month for free.");
+            request.Method = Method.POST;
+            return client.Execute(request) as RestResponse;
+        }
     }
 }

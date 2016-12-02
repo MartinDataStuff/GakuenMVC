@@ -117,6 +117,13 @@ namespace GakuenMVC.Controllers
             return RedirectToAction("Index");
         }
 
-       
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult SendMessage()
+        {
+            Models.EmailService.SendSimpleMessage();
+            return RedirectToAction("Index");
+        }
+
     }
 }
