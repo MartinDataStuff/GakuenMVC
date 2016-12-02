@@ -45,10 +45,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AE.Net.Mail, Version=1.7.10.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AE.Net.Mail.1.7.10.0\lib\net45\AE.Net.Mail.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="BouncyCastle.Crypto, Version=1.7.4137.9688, Culture=neutral, PublicKeyToken=a4292a325f69b123, processorArchitecture=MSIL">
       <HintPath>..\packages\BouncyCastle.1.7.0\lib\Net40-Client\BouncyCastle.Crypto.dll</HintPath>
       <Private>True</Private>
@@ -96,14 +92,6 @@
     </Reference>
     <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\RestSharp.105.2.3\lib\net452\RestSharp.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="SendGrid, Version=8.0.5.0, Culture=neutral, PublicKeyToken=4f047e93159395ca, processorArchitecture=MSIL">
-      <HintPath>..\packages\Sendgrid.8.0.5\lib\SendGrid.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="SendGrid.CSharp.HTTP.Client, Version=3.0.0.0, Culture=neutral, PublicKeyToken=79219bf4e5ecaaca, processorArchitecture=MSIL">
-      <HintPath>..\packages\SendGrid.CSharp.HTTP.Client.3.0.0\lib\SendGrid.CSharp.HTTP.Client.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -353,7 +341,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
