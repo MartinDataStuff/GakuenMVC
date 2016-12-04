@@ -32,13 +32,13 @@
                 </button>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li id="magic">@Html.ActionLink("Gakuen", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Hjem", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Om", "About", "Home")</li>
-                    <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Nyheder", "Index", "NewsMessages")</li>
-                </ul>
+                    <ul class="nav navbar-nav">
+                        <li id="magic" style="font-size: 300%">@Html.ActionLink("Gakuen", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Hjem", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Om", "About", "Home")</li>
+                        <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
+                        <li>@Html.ActionLink("Nyheder", "Index", "NewsMessages")</li>
+                    </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
