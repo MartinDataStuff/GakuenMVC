@@ -22,7 +22,7 @@ namespace DLLGakuen.ServiceGateway
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                HttpResponseMessage response = client.PostAsJsonAsync("api/Productes", t).Result;
+                HttpResponseMessage response = client.PostAsJsonAsync("api/Products", t).Result;
                 if (response.IsSuccessStatusCode)
                 {
                     return response.Content.ReadAsAsync<Product>().Result;
@@ -39,7 +39,7 @@ namespace DLLGakuen.ServiceGateway
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                var response = client.GetAsync($"/api/Productes/{id}").Result;
+                var response = client.GetAsync($"/api/Products/{id}").Result;
                 if (response.IsSuccessStatusCode)
                 {
                     return response.Content.ReadAsAsync<Product>().Result;
@@ -56,7 +56,7 @@ namespace DLLGakuen.ServiceGateway
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                var response = client.GetAsync("/api/Productes").Result;
+                var response = client.GetAsync("/api/Products").Result;
                 if (response.IsSuccessStatusCode)
                 {
                     return response.Content.ReadAsAsync<List<Product>>().Result;
@@ -74,7 +74,7 @@ namespace DLLGakuen.ServiceGateway
                 client.DefaultRequestHeaders.Accept.Add(
                     new MediaTypeWithQualityHeaderValue("application/json"));
 
-                var response = client.PutAsJsonAsync($"/api/Productes/{t.Id}", t).Result;
+                var response = client.PutAsJsonAsync($"/api/Products/{t.Id}", t).Result;
                 if (response.IsSuccessStatusCode)
                 {
                     return response.Content.ReadAsAsync<Product>().Result;
@@ -92,7 +92,7 @@ namespace DLLGakuen.ServiceGateway
                 client.DefaultRequestHeaders.Accept.Add(
                     new MediaTypeWithQualityHeaderValue("application/json"));
 
-                var response = client.DeleteAsync($"/api/Productes/{id}").Result;
+                var response = client.DeleteAsync($"/api/Products/{id}").Result;
                 if (response.IsSuccessStatusCode)
                 {
                     return response.Content.ReadAsAsync<Product>().Result != null;
