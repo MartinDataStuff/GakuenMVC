@@ -27,7 +27,7 @@ namespace DLLGakuen.Entity
 
 
         
-        public Schedule Schedule { get; set; }
+        public List<SchoolEvent> SchoolEvents { get; set; }
         public enum Positions
         {
             Teacher, Student
