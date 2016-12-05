@@ -45,5 +45,7 @@ namespace GakuenMVC.Models
         }
 
         public System.Data.Entity.DbSet<DLLGakuen.Entity.AdminUser> AdminUsers { get; set; }
+
+        public System.Data.Entity.DbSet<DLLGakuen.Entity.SchoolEvent> SchoolEvents { get; set; }
     }
 }
