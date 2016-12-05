@@ -11,16 +11,16 @@
 }
 
 body {
-    background-color: #c0c0c0;
+    background-color: #ededed;
 }
 
 .jumbotron {
-    background-color: #ffffff !important;
+    background-color: #ededed !important;
     color: #000000;
 }
 
 .body-content {
-    background-color: white !important;
+    background-color: #ededed !important;
 }
 
 #magic {
@@ -84,3 +84,35 @@ body {
         .text span.spacer {
             padding: 0 5px;
         }
+
+
+
+/*Design...*/
+.container {
+    position: relative;
+    padding: 0 0 0 0;
+}
+
+#sidebar {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 80%;
+    width: 20%;
+    background: #ffffff;
+}
+
+#content {
+    /*border: 1px solid #000;*/
+    width: 75%;
+    height: 100%;
+    margin: 0 0 0 0;
+    background: #ffffff;
+}
+
+#header {
+    width: 100%;
+    height: 300px;
+    margin: 0 0 20px 0;
+    background: #ffffff;
+}
