@@ -9,11 +9,8 @@ using System.Configuration;
 using System.Diagnostics;
 using System.Security.Cryptography;
 using System.IO;
-using System.Net.Mail;
-using Google.Apis.Auth.OAuth2;
-using Google.Apis.Gmail.v1;
-using Google.Apis.Gmail.v1.Data;
-using mailinblue;
+using RestSharp;
+using RestSharp.Authenticators;
 
 namespace GakuenMVC.Models
 {
