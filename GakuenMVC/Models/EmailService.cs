@@ -9,6 +9,10 @@ using System.Configuration;
 using System.Diagnostics;
 using System.Security.Cryptography;
 using System.IO;
+<<<<<<< HEAD
+=======
+using System.Net.Mail;
+>>>>>>> 46a5a62a2f491054873e1ef13761622fda5125c4
 using RestSharp;
 using RestSharp.Authenticators;
 
