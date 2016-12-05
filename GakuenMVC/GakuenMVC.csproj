@@ -49,30 +49,6 @@
       <HintPath>..\packages\BouncyCastle.1.7.0\lib\Net40-Client\BouncyCastle.Crypto.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Google.Apis, Version=1.19.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Apis.1.19.0\lib\net45\Google.Apis.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Google.Apis.Auth, Version=1.19.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Apis.Auth.1.19.0\lib\net45\Google.Apis.Auth.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Google.Apis.Auth.PlatformServices, Version=1.19.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Apis.Auth.1.19.0\lib\net45\Google.Apis.Auth.PlatformServices.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Google.Apis.Core, Version=1.19.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Apis.Core.1.19.0\lib\net45\Google.Apis.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Google.Apis.Gmail.v1, Version=1.19.0.676, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Apis.Gmail.v1.1.19.0.676\lib\net45\Google.Apis.Gmail.v1.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Google.Apis.PlatformServices, Version=1.19.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Apis.1.19.0\lib\net45\Google.Apis.PlatformServices.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
       <Private>True</Private>
@@ -114,12 +90,8 @@
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="SendGrid, Version=8.0.5.0, Culture=neutral, PublicKeyToken=4f047e93159395ca, processorArchitecture=MSIL">
-      <HintPath>..\packages\Sendgrid.8.0.5\lib\SendGrid.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="SendGrid.CSharp.HTTP.Client, Version=3.0.0.0, Culture=neutral, PublicKeyToken=79219bf4e5ecaaca, processorArchitecture=MSIL">
-      <HintPath>..\packages\SendGrid.CSharp.HTTP.Client.3.0.0\lib\SendGrid.CSharp.HTTP.Client.dll</HintPath>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net452\RestSharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -248,13 +220,12 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AddressesController.cs" />
     <Compile Include="Controllers\AdminUsersController.cs" />
-    <Compile Include="Controllers\ConfirmPaymentController.cs" />
     <Compile Include="Controllers\EventMessagesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NewsMessagesController.cs" />
     <Compile Include="Controllers\SchedulesController.cs" />
-    <Compile Include="Controllers\ShopController.cs" />
+    <Compile Include="Controllers\SchemaController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -282,6 +253,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="fonts\MagicSchoolOne.ttf" />
+    <None Include="Properties\PublishProfiles\Gakuen - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -362,12 +334,7 @@
     <Content Include="Views\AdminUsers\Edit.cshtml" />
     <Content Include="Views\AdminUsers\Index.cshtml" />
     <Content Include="Views\Home\NewsFeed.cshtml" />
-    <Content Include="Views\Shop\Index.cshtml" />
-    <Content Include="Views\ConfirmPayment\BuyList.cshtml" />
-    <Content Include="Views\ConfirmPayment\ConfirmBuy.cshtml" />
-    <Content Include="Views\ConfirmPayment\Index.cshtml" />
-    <Content Include="Views\ConfirmPayment\Validate.cshtml" />
-    <Content Include="Views\Shop\Create.cshtml" />
+    <Content Include="Views\Schema\SchemaExampleView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -376,7 +343,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>

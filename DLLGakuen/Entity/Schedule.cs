@@ -8,5 +8,7 @@ namespace DLLGakuen.Entity
 {
     public class Schedule : AbstractEntity
     {
+        public List<SchoolEvent> SchoolEvents { get; set; } = new List<SchoolEvent>();
+        public List<User> Users { get; set; }
     }
 }

@@ -37,16 +37,8 @@
             <label class="control-label col-sm-2">Billede:</label>
             <label class="col-lg-2">Indæst Billede Link</label>
             <div class="col-md-10">
-
-                @*<label class="custom-file">
-                        <input type="file" name="ImagePath" class="custom-file-input">
-                        <span class="custom-file-control"></span>
-                    </label>*@
                 @Html.TextBoxFor(model => model.ImageToHost.ImagePath, new {@class = "form-control", @placeholder = "www.exemple.net/image/image1.jpg"})
-
                 @Html.ValidationMessageFor(model => model.ImageToHost.ImagePath, "", new {@class = "text-danger"})
-
-
             </div>
         </div>
         
