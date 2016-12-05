@@ -33,13 +33,15 @@
     <form action="ConfirmBuy" method="post">
         @{
             List<Product> products = ViewBag.Products;
+            int x = -1;
             foreach (var pro in products)
             {
+                x++;
                 <tr>
                     <td>@pro.Info</td>
                     <td>@pro.Name</td>
                     <td>@pro.Price</td>
-                    <td><input type="checkbox" name="BuyBox" value="Buy"></td>
+                    <td><input type="checkbox" name="BuyBox@{x}" value="Buy"></td>
                 </tr>
     }
         }
