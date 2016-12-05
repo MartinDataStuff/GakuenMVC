@@ -8,8 +8,33 @@
 </head>
 
 <body>
+    <br />
     <div id="header" class="img-rounded">
-        <img src="http://vignette3.wikia.nocookie.net/anime-arts/images/3/3f/590123-main_school_building.png/revision/latest?cb=20130526235218" style="width: 100%; height: 300px"/>
+        <div class="w3-content w3-display-container">
+            <img src="http://vignette3.wikia.nocookie.net/anime-arts/images/3/3f/590123-main_school_building.png/revision/latest?cb=20130526235218" style="width: 100%; height: 300px" />
+            <img src="http://img2.rnkr-static.com/list_img_v2/14801/1834801/870/the-best-ninja-anime-of-all-time-u1.jpg" style="width: 100%; height: 300px" />
+            <a class="w3-btn-floating w3-display-left" onclick="plusDivs(-1)">&#10094;</a>
+            <a class="w3-btn-floating w3-display-right" onclick="plusDivs(1)">&#10095;</a>
+        </div>
+        <script>
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  if (n > x.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";
+  }
+  x[slideIndex-1].style.display = "block";
+}
+        </script>
     </div>
     <div class="container">
         <div id="content" class="img-rounded">
@@ -17,7 +42,7 @@
             <div class="row">
                 @foreach (var item in Model.Reverse())
             {
-                    <div class="col-sm-6 col-md-4">
+                    <div class="col-md-4">
                         <div class="divimg img-rounded">
                             <a href="@Url.Action("NewsFeed", new {id = item.Id})" class="divimg img-rounded">
                                 <img src="@Html.DisplayFor(modelItem => item.ImageToHost.ImagePath)" class="divimg img-rounded" />
@@ -28,11 +53,12 @@
                             </a>
                         </div>
                     </div>
+                    <p>.</p>
                 }
             </div>
         </div>
         <div id="sidebar" class="img-rounded">
-            Test
+
         </div>
 
     </div>
