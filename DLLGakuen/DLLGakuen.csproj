@@ -68,6 +68,7 @@
     <Compile Include="Entity\OrderList.cs" />
     <Compile Include="Entity\Product.cs" />
     <Compile Include="Entity\Schedule.cs" />
+    <Compile Include="Entity\SchoolEvent.cs" />
     <Compile Include="Entity\User.cs" />
     <Compile Include="Entity\VideoToHost.cs" />
     <Compile Include="IServiceGateway.cs" />

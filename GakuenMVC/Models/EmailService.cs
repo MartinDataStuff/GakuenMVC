@@ -19,12 +19,13 @@ namespace GakuenMVC.Models
         //Version 5
         public static RestResponse SendSimpleMessage()
         {
-            RestClient client = new RestClient();
-            client.BaseUrl = new Uri("https://api.mailgun.net/v3");
-            client.Authenticator =
-                   new HttpBasicAuthenticator("api",
-                                              "key-8782ae44040d98f33c87a175376e0632");
-            RestRequest request = new RestRequest();
+            var client = new RestClient
+            {
+                BaseUrl = new Uri("https://api.mailgun.net/v3"),
+                Authenticator = new HttpBasicAuthenticator("api",
+                    "key-8782ae44040d98f33c87a175376e0632")
+            };
+            var request = new RestRequest();
             request.AddParameter("domain",
                                 "sandbox58007e700f024722a5e7a7226024d8f2.mailgun.org", ParameterType.UrlSegment);
             request.Resource = "{domain}/messages";
