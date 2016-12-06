@@ -8,108 +8,109 @@ using System.Web;
 using System.Web.Mvc;
 using DLLGakuen;
 using DLLGakuen.Entity;
+using GakuenMVC.Models;
 
 namespace GakuenMVC.Controllers
 {
-    public class AddressesController : Controller
+    public class OrderListsController : Controller
     {
-        private readonly IServiceGateway<Address> _addresServiceGateway = new DllFacade().GetAddressServiceGateway();
+        private readonly IServiceGateway<OrderList> _db = new DllFacade().GetOrderListServiceGateway();
 
-        // GET: Addresses
-       public ActionResult Index()
+        // GET: OrderLists
+        public ActionResult Index()
         {
-            return View(_addresServiceGateway.Read());
+            return View(_db.Read());
         }
 
-        // GET: Addresses/Details/5
+        // GET: OrderLists/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Address address = _addresServiceGateway.Read(id.Value);
-            if (address == null)
+            OrderList orderList = _db.Read(id.Value);
+            if (orderList == null)
             {
                 return HttpNotFound();
             }
-            return View(address);
+            return View(orderList);
         }
 
-        // GET: Addresses/Create
+        // GET: OrderLists/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Addresses/Create
+        // POST: OrderLists/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Street1,Street2,Town,ZipCode,Country")] Address address)
+        public ActionResult Create([Bind(Include = "Id,PaidStringCode,PriceToPay,DateTime")] OrderList orderList)
         {
             if (ModelState.IsValid)
             {
-                _addresServiceGateway.Create(address);
+                _db.Create(orderList);
                 return RedirectToAction("Index");
             }
 
-            return View(address);
+            return View(orderList);
         }
 
-        // GET: Addresses/Edit/5
+        // GET: OrderLists/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Address address = _addresServiceGateway.Read(id.Value);
-            if (address == null)
+            OrderList orderList = _db.Read(id.Value);
+            if (orderList == null)
             {
                 return HttpNotFound();
             }
-            return View(address);
+            return View(orderList);
         }
 
-        // POST: Addresses/Edit/5
+        // POST: OrderLists/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Street1,Street2,Town,ZipCode,Country")] Address address)
+        public ActionResult Edit([Bind(Include = "Id,PaidStringCode,PriceToPay,DateTime")] OrderList orderList)
         {
             if (ModelState.IsValid)
             {
-                _addresServiceGateway.Update(address);
+                _db.Update(orderList);
                 return RedirectToAction("Index");
             }
-            return View(address);
+            return View(orderList);
         }
 
-        // GET: Addresses/Delete/5
+        // GET: OrderLists/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Address address = _addresServiceGateway.Read(id.Value);
-            if (address == null)
+            OrderList orderList = _db.Read(id.Value);
+            if (orderList == null)
             {
                 return HttpNotFound();
             }
-            return View(address);
+            return View(orderList);
         }
 
-        // POST: Addresses/Delete/5
-       [HttpPost, ActionName("Delete")]
+        // POST: OrderLists/Delete/5
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
-       {
-           _addresServiceGateway.Delete(id);
+        {
+            _db.Delete(id);
             return RedirectToAction("Index");
         }
-    }
+        }
 }

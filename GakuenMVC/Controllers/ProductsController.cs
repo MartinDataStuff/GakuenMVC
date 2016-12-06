@@ -8,107 +8,109 @@ using System.Web;
 using System.Web.Mvc;
 using DLLGakuen;
 using DLLGakuen.Entity;
+using GakuenMVC.Models;
 
 namespace GakuenMVC.Controllers
 {
-    public class AddressesController : Controller
+    public class ProductsController : Controller
     {
-        private readonly IServiceGateway<Address> _addresServiceGateway = new DllFacade().GetAddressServiceGateway();
+        private readonly IServiceGateway<Product> _db = new DllFacade().GetProductServiceGateway();
 
-        // GET: Addresses
-       public ActionResult Index()
+        // GET: Products
+        public ActionResult Index()
         {
-            return View(_addresServiceGateway.Read());
+            return View(_db.Read());
         }
 
-        // GET: Addresses/Details/5
+        // GET: Products/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Address address = _addresServiceGateway.Read(id.Value);
-            if (address == null)
+            Product product = _db.Read(id.Value);
+            if (product == null)
             {
                 return HttpNotFound();
             }
-            return View(address);
+            return View(product);
         }
 
-        // GET: Addresses/Create
+        // GET: Products/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Addresses/Create
+        // POST: Products/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Street1,Street2,Town,ZipCode,Country")] Address address)
+        public ActionResult Create([Bind(Include = "Id,Info,Name,Price")] Product product)
         {
             if (ModelState.IsValid)
             {
-                _addresServiceGateway.Create(address);
+                _db.Create(product);
                 return RedirectToAction("Index");
             }
 
-            return View(address);
+            return View(product);
         }
 
-        // GET: Addresses/Edit/5
+        // GET: Products/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Address address = _addresServiceGateway.Read(id.Value);
-            if (address == null)
+            Product product = _db.Read(id.Value);
+            if (product == null)
             {
                 return HttpNotFound();
             }
-            return View(address);
+            return View(product);
         }
 
-        // POST: Addresses/Edit/5
+        // POST: Products/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Street1,Street2,Town,ZipCode,Country")] Address address)
+        public ActionResult Edit([Bind(Include = "Id,Info,Name,Price")] Product product)
         {
             if (ModelState.IsValid)
             {
-                _addresServiceGateway.Update(address);
+                _db.Update(product);
                 return RedirectToAction("Index");
             }
-            return View(address);
+            return View(product);
         }
 
-        // GET: Addresses/Delete/5
+        // GET: Products/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Address address = _addresServiceGateway.Read(id.Value);
-            if (address == null)
+            Product product = _db.Read(id.Value);
+            if (product == null)
             {
                 return HttpNotFound();
             }
-            return View(address);
+            return View(product);
         }
 
-        // POST: Addresses/Delete/5
-       [HttpPost, ActionName("Delete")]
+        // POST: Products/Delete/5
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
-       {
-           _addresServiceGateway.Delete(id);
+        {
+            _db.Delete(id);
+
             return RedirectToAction("Index");
         }
     }
