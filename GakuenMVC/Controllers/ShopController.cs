@@ -66,7 +66,8 @@ namespace GakuenMVC.Controllers
         public ActionResult Buylist()
         {
 
-            _OrderListServiceGateway.Create(new OrderList() {ItemsList = orderList, DateTime = DateTime.Now});
+            OrderList ORLImpirt = _OrderListServiceGateway.Create(new OrderList() {ItemsList = orderList, DateTime = DateTime.Now});
+            new CodeMaker(ORLImpirt);
             return RedirectToAction("Index");
         }
     }
