@@ -5,18 +5,19 @@ using System.Web;
 using System.Web.Mvc;
 using DLLGakuen;
 using DLLGakuen.Entity;
+using GakuenMVC.Models;
 
 namespace GakuenMVC.Controllers
 {
     public class ShopController : Controller
     {
         private readonly IServiceGateway<Product> _ProductServiceGateway = new DllFacade().GetProductServiceGateway();
-        
+        private readonly IServiceGateway<OrderList> _OrderListServiceGateway = new DllFacade().GetOrderListServiceGateway();
+
         private static List<Product> orderList = new List<Product>();
         // GET: Shop
         public ActionResult Index()
         {
-            _ProductServiceGateway.Create(new Product() {Name = "ggg",Price = 44,Info = "ads"});
             ViewBag.Products = _ProductServiceGateway.Read();
             ViewBag.Orderlist = orderList;
             return View();
@@ -27,12 +28,19 @@ namespace GakuenMVC.Controllers
         public ActionResult ConfirmBuy(int id)
         {
             orderList.Add(_ProductServiceGateway.Read().Find(x => x.Id == id));
-            Product ppp = _ProductServiceGateway.Read().Find(x => x.Id == id);
             ViewBag.Products = _ProductServiceGateway.Read();
             ViewBag.Orderlist = orderList;
             return RedirectToAction("Index");
         }
+        // GET: Shop/Remove/5
 
+        public ActionResult Remove(int id)
+        {
+            orderList.RemoveAll(x => x.Id == id);
+            ViewBag.Products = _ProductServiceGateway.Read();
+            ViewBag.Orderlist = orderList;
+            return RedirectToAction("Index");
+        }
         // GET: Shop/Create
         public ActionResult Create()
         {
@@ -52,6 +60,14 @@ namespace GakuenMVC.Controllers
             {
                 return View();
             }
+        }
+        // GET: Shop/Buylist/5
+
+        public ActionResult Buylist()
+        {
+
+            _OrderListServiceGateway.Create(new OrderList() {ItemsList = orderList, DateTime = DateTime.Now});
+            return RedirectToAction("Index");
         }
     }
 }

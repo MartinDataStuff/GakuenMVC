@@ -36,11 +36,11 @@
             foreach (var pro in ViewBag.Products)
             {
                 <tr>
-                    <td>@pro.id</td>
+                    <td>@pro.Id</td>
                     <td>@pro.Info</td>
                     <td>@pro.Name</td>
                     <td>@pro.Price</td>
-                    <td><a class="btn btn-success" href="/Shop/ConfirmBuy/@pro.id">tilføj</a></td>
+                    <td><a class="btn btn-success" href="/Shop/ConfirmBuy/@pro.Id">tilføj</a></td>
                 </tr>
             }
         }
@@ -52,13 +52,13 @@
                     <td>@pro.Info</td>
                     <td>@pro.Name</td>
                     <td>@pro.Price</td>
-                    <td><a class="btn btn-danger" href="/Shop/ConfirmBuy/@pro.id">slet</a></td>
+                    <td><a class="btn btn-danger" href="/Shop/Remove/@pro.Id">slet</a></td>
               </tr>
             }
         }
         
 
-        <a class="btn btn-success" href="/Shop">Køb</a>
+        <a class="btn btn-success" href="/Shop/Buylist">Køb</a>
 
 
 </table>
