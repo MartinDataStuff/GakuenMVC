@@ -13,7 +13,7 @@ namespace GakuenMVC.Models
         private static readonly IServiceGateway<OrderList> _OrderListServiceGateway = new DllFacade().GetOrderListServiceGateway();
         static Random random = new Random();
         static IDictionary<string, OrderList> dict = new Dictionary<string, OrderList>();
-        public static OrderList ORL;
+        private static OrderList ORL = new OrderList();
 
         public CodeMaker(OrderList ORLImpirt)
         {
@@ -54,7 +54,7 @@ namespace GakuenMVC.Models
         }
         private static string KeyMaker()
         {
-            string OneCode = ($"{GetLetter()} {GetLetter()} {GetLetter()} {GetLetter()} {GetLetter()} {GetLetter()}");
+            string OneCode = ($"{GetLetter()}{GetLetter()}{GetLetter()}{GetLetter()}{GetLetter()}{GetLetter()}");
             return OneCode;
         }
         private static char GetLetter()

@@ -53,7 +53,7 @@ namespace GakuenMVC.Controllers
         {
             try
             {
-                _ProductServiceGateway.Create( new Product() {Info = info, Name = name,Price = price});
+                
                 return RedirectToAction("Index");
             }
             catch
@@ -61,13 +61,14 @@ namespace GakuenMVC.Controllers
                 return View();
             }
         }
-        // GET: Shop/Buylist/5
-
+        // POST: Shop/Buylist
+        [HttpPost]
         public ActionResult Buylist()
         {
-
-            OrderList ORLImpirt = _OrderListServiceGateway.Create(new OrderList() {ItemsList = orderList, DateTime = DateTime.Now});
+            
+            OrderList ORLImpirt = _OrderListServiceGateway.Create(new OrderList() { ItemsList = orderList });
             new CodeMaker(ORLImpirt);
+            orderList.Clear();
             return RedirectToAction("Index");
         }
     }
