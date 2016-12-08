@@ -1,0 +1,33 @@
+﻿@model DLLGakuen.Entity.SchoolEvent
+
+@{
+    ViewBag.Title = "SchoolEventDetail";
+}
+
+<h2>Oversigt over Event: @Model.Name</h2>
+
+<body>
+<div style="display: table-row">
+    <div class="jumbotron" style="width: 400px; display: table-cell; border: 2px solid midnightblue; border-radius: 3px">
+        <p>@Html.Label("Event: ")</p>
+        <p id="magic">@Html.DisplayFor(model => model.Name)</p>
+        <p>@Html.Label("Tid i Min: ")</p>
+        <p>@Html.DisplayFor(model => model.Minuttes)</p>
+        <p>@Html.Label("Dag: ")</p>
+        <p>@Html.DisplayFor(model => model.Schedule.Day)</p>
+    </div>
+
+    <div class="jumbotron" style="display: table-cell; border: 2px solid midnightblue">
+        <p>@Html.Label("Deltager: ")</p>
+        <p>@Html.DisplayFor(model => model.Users)</p>
+    </div>
+</div>
+
+    <div>
+        <div style="margin-top: 30px" class="col-md-2">
+            <button type="button" class="btn btnbtn-sm" style="background-color: #ff0000;">
+                @Html.ActionLink("Tilbage", "SchoolEventsInSchedule","Schedules", new { id = Model.Schedule.Id} , new { style = "color: white" })
+            </button>
+        </div>
+    </div>
+</body>
