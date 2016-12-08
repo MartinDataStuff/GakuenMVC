@@ -1,4 +1,5 @@
-﻿@model IEnumerable<DLLGakuen.Entity.Schedule>
+﻿@using GakuenMVC.Controllers
+@model IEnumerable<DLLGakuen.Entity.Schedule>
 
 @{
     ViewBag.Title = "OverView";
@@ -10,20 +11,29 @@
     @Styles.Render("~/Content/HomePage.css")
 </head>
 <body>
-    <br />
-    <div class="body-content">
-        @foreach (var item in Model.Reverse())
-        {
-            <div class="col-md-4">
-                <a href="@Url.Action("SchoolEventsInSchedule", new {id = item.Id})">
-                    <span id="wrapper">
+<br />
+<div class="body-content">
+    @foreach (var item in Model.Reverse())
+    {
+        <div class="col-md-12" style="width: 200px; border: 4px solid midnightblue; border-radius: 5px">
+            <a href="@Url.Action("SchoolEventsInSchedule", new {id = item.Id})">
+                <span id="wrapper">
                             <p id="magic" style="font-size: 300%">@Html.DisplayFor(modelItem => item.Day)</p>
                         @Html.Label( "Events : ")
                         @Html.DisplayFor(modelItem => item.SchoolEvents)    
                     </span>
-                </a>
-            </div>
-        }
+            </a>
+        </div>
+    }
+</div>
+<div class="row"></div>
+    
+<div>
+    <div style="margin-top: 30px" class="col-md-4">
+        <button type="button" class="btn btnbtn-sm" style="background-color: #ff0000;">
+            @Html.ActionLink("Tilbage", "Index", "Home", null, new { style="color: white"})
+        </button>
     </div>
-    <div class="row"></div>
+</div>
 </body>
+
