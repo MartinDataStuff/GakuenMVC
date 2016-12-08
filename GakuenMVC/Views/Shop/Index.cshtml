@@ -23,42 +23,63 @@
         background-color: #dddddd;
     }
 </style>
-    <table>
-        <tr>
-            <th>?</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Buy</th>
-        </tr>
+<table>
+    <tr>
+        <th>?</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Buy</th>
+    </tr>
 
-        @{
+    @{
 
-            foreach (var pro in ViewBag.Products)
-            {
-                <tr>
-                    <td>@pro.id</td>
-                    <td>@pro.Info</td>
-                    <td>@pro.Name</td>
-                    <td>@pro.Price</td>
-                    <td><a class="btn btn-success" href="/Shop/ConfirmBuy/@pro.id">tilføj</a></td>
-                </tr>
-            }
+        foreach (var pro in ViewBag.Products)
+        {
+            <tr>
+                <td>
+                    <form>
+                        <button onclick="infoFunktion('@pro.Info')">?</button>
+                    </form>
+                </td>
+                <td>@pro.Name</td>
+                <td>@pro.Price</td>
+                <td><a class="btn btn-success" href="/Shop/ConfirmBuy/@pro.Id">tilføj</a></td>
+            </tr>
         }
-
-        @{
-            foreach (var pro in ViewBag.Orderlist)
-            {
-                <tr>
-                    <td>@pro.Info</td>
-                    <td>@pro.Name</td>
-                    <td>@pro.Price</td>
-                    <td><a class="btn btn-danger" href="/Shop/ConfirmBuy/@pro.id">slet</a></td>
-              </tr>
-            }
-        }
-        
-
-        <a class="btn btn-success" href="/Shop">Køb</a>
-
-
+    }
 </table>
+<h2>Your List</h2>
+<table>
+    <tr>
+        <th>?</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Buy</th>
+    </tr>
+    @{
+        foreach (var pro in ViewBag.Orderlist)
+        {
+            <tr>
+                <td>
+                    <form>
+                        <button onclick="infoFunktion('@pro.Info')">?</button>
+                    </form>
+                </td>
+
+                <td>@pro.Name</td>
+                <td>@pro.Price</td>
+                <td><a class="btn btn-danger" href="/Shop/Remove/@pro.Id">slet</a></td>
+            </tr>
+        }
+    }
+
+    <form action="/Shop/Buylist" method="post">
+        <input class="btn btn-success" type="submit" value="Køb">
+    </form>
+    
+</table>
+<script>
+    function infoFunktion(blah) {
+        alert(blah);
+}
+</script>
