@@ -1,0 +1,32 @@
+﻿@using GakuenMVC.Controllers
+@model DLLGakuen.Entity.Schedule
+
+@{
+    ViewBag.Title = "SchoolEventsInSchedule";
+}
+
+<h2>Oversigt af @Model.Day</h2>
+
+
+<head>
+    @Styles.Render("~/Content/HomePage.css")
+</head>
+<body>
+    <br />
+    <div class="body-content">
+        @foreach (var item in Model.SchoolEvents)
+        {
+            <div class="col-md-4">
+                <a href="@Url.Action("SchoolEventDetail","SchoolEvents", new {id = item.Id})">
+                    <span id="wrapper">
+                        <p style="font-size: 300%">@Html.DisplayFor(modelItem => item.Name)</p>
+                        @Html.Label("Min :")
+                        @Html.DisplayFor(modelItem => item.Minuttes)
+
+                    </span>
+                </a>
+            </div>
+        }
+    </div>
+    <div class="row"></div>
+</body>
