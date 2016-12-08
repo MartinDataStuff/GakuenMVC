@@ -61,15 +61,27 @@ namespace GakuenMVC.Controllers
                 return View();
             }
         }
+        private static OrderList ORLImpirt = new OrderList();
         // POST: Shop/Buylist
         [HttpPost]
         public ActionResult Buylist()
         {
             
-            OrderList ORLImpirt = _OrderListServiceGateway.Create(new OrderList() { ItemsList = orderList });
+            ORLImpirt = _OrderListServiceGateway.Create(new OrderList() { ItemsList = orderList });
             new CodeMaker(ORLImpirt);
             orderList.Clear();
-            return RedirectToAction("Index");
+            return RedirectToAction("ListInfo");
+        }
+        // GET: Shop/ListInfo
+        public ActionResult ListInfo()
+        {
+            ViewBag.Products = ORLImpirt.ItemsList;
+            return View(ORLImpirt);
+        }
+        // GET: Shop/OrderListList
+        public ActionResult OrderListList()
+        {
+            return View(_OrderListServiceGateway.Read());
         }
     }
 }
