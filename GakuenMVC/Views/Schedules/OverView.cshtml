@@ -1,0 +1,29 @@
+﻿@model IEnumerable<DLLGakuen.Entity.Schedule>
+
+@{
+    ViewBag.Title = "OverView";
+}
+
+<h2>Oversigt over dage</h2>
+
+<head>
+    @Styles.Render("~/Content/HomePage.css")
+</head>
+<body>
+    <br />
+    <div class="body-content">
+        @foreach (var item in Model.Reverse())
+        {
+            <div class="col-md-4">
+                <a href="@Url.Action("SchoolEventsInSchedule", new {id = item.Id})">
+                    <span id="wrapper">
+                            <p id="magic" style="font-size: 300%">@Html.DisplayFor(modelItem => item.Day)</p>
+                        @Html.Label( "Events : ")
+                        @Html.DisplayFor(modelItem => item.SchoolEvents)    
+                    </span>
+                </a>
+            </div>
+        }
+    </div>
+    <div class="row"></div>
+</body>

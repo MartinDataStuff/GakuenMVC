@@ -227,6 +227,7 @@
     <Compile Include="Controllers\NewsMessagesController.cs" />
     <Compile Include="Controllers\OrderListsController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\SchedulesController.cs" />
     <Compile Include="Controllers\SchemaController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Controllers\SchoolEventsController.cs" />
@@ -360,6 +361,14 @@
     <Content Include="Views\Products\Details.cshtml" />
     <Content Include="Views\Products\Edit.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\Schedules\Create.cshtml" />
+    <Content Include="Views\Schedules\Delete.cshtml" />
+    <Content Include="Views\Schedules\Details.cshtml" />
+    <Content Include="Views\Schedules\Edit.cshtml" />
+    <Content Include="Views\Schedules\Index.cshtml" />
+    <Content Include="Views\Schedules\OverView.cshtml" />
+    <Content Include="Views\Schedules\SchoolEventsInSchedule.cshtml" />
+    <Content Include="Views\SchoolEvents\SchoolEventDetail.cshtml" />
     <Content Include="Views\Shop\ListInfo.cshtml" />
     <Content Include="Views\Shop\OrderListList.cshtml" />
   </ItemGroup>

@@ -12,121 +12,124 @@ using GakuenMVC.Models;
 
 namespace GakuenMVC.Controllers
 {
-    public class SchoolEventsController : Controller
+    public class SchedulesController : Controller
     {
-        private readonly IServiceGateway<SchoolEvent> _schoolEventserviceGateway =
-            new DllFacade().GetSchoolEventServiceGateway();
+        private readonly IServiceGateway<Schedule> _scheduleServiceGateway = new DllFacade().GetScheduleServiceGateway();
 
-        // GET: SchoolEvents
+        // GET: Schedules
         public ActionResult Index()
         {
-            return View(_schoolEventserviceGateway.Read());
+            return View(_scheduleServiceGateway.Read());
         }
 
-        // GET: SchoolEvents/Details/5
+        // GET: Schedules/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SchoolEvent schoolEvent = _schoolEventserviceGateway.Read(id.Value);
-            if (schoolEvent == null)
+            Schedule schedule = _scheduleServiceGateway.Read(id.Value);
+            if (schedule == null)
             {
                 return HttpNotFound();
             }
-            return View(schoolEvent);
+            return View(schedule);
         }
 
-        // GET: SchoolEvents/Create
+        // GET: Schedules/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: SchoolEvents/Create
+        // POST: Schedules/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Minuttes,Name")] SchoolEvent schoolEvent)
+        public ActionResult Create([Bind(Include = "Id,Day")] Schedule schedule)
         {
             if (ModelState.IsValid)
             {
-                _schoolEventserviceGateway.Create(schoolEvent);
+                _scheduleServiceGateway.Create(schedule);
                 return RedirectToAction("Index");
             }
 
-            return View(schoolEvent);
+            return View(schedule);
         }
 
-        // GET: SchoolEvents/Edit/5
+        // GET: Schedules/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SchoolEvent schoolEvent = _schoolEventserviceGateway.Read(id.Value);
-            if (schoolEvent == null)
+            Schedule schedule = _scheduleServiceGateway.Read(id.Value);
+            if (schedule == null)
             {
                 return HttpNotFound();
             }
-            return View(schoolEvent);
+            return View(schedule);
         }
 
-        // POST: SchoolEvents/Edit/5
+        // POST: Schedules/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Minuttes,Name")] SchoolEvent schoolEvent)
+        public ActionResult Edit([Bind(Include = "Id,Day")] Schedule schedule)
         {
             if (ModelState.IsValid)
             {
-                _schoolEventserviceGateway.Update(schoolEvent);
+                _scheduleServiceGateway.Update(schedule);
                 return RedirectToAction("Index");
             }
-            return View(schoolEvent);
+            return View(schedule);
         }
 
-        // GET: SchoolEvents/Delete/5
+        // GET: Schedules/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SchoolEvent schoolEvent = _schoolEventserviceGateway.Read(id.Value);
-            if (schoolEvent == null)
+            Schedule schedule = _scheduleServiceGateway.Read(id.Value);
+            if (schedule == null)
             {
                 return HttpNotFound();
             }
-            return View(schoolEvent);
+            return View(schedule);
         }
 
-        // POST: SchoolEvents/Delete/5
+        // POST: Schedules/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            _schoolEventserviceGateway.Delete(id);
-
+            _scheduleServiceGateway.Delete(id);
             return RedirectToAction("Index");
         }
 
-        public ActionResult SchoolEventDetail(int? id)
+        public ActionResult OverView()
+        {
+            return View(_scheduleServiceGateway.Read());
+        }
+
+        public ActionResult SchoolEventsInSchedule(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SchoolEvent schoolEvent = _schoolEventserviceGateway.Read(id.Value);
-            if (schoolEvent == null)
+            Schedule schedule = _scheduleServiceGateway.Read(id.Value);
+            if (schedule == null)
             {
                 return HttpNotFound();
             }
-            return View(schoolEvent);
+            return View(schedule);
         }
     }
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>Gakuen - @ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Styles.Render("~/Content/HomePage.css")
@@ -50,7 +50,10 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p style="text-align: center">
+                &copy; @DateTime.Now.Year Gakuen | Find os på 
+                <a href="https://www.facebook.com/" class="btn btn-default btn-xs"><b>f</b> Facebook</a>
+            </p>
         </footer>
     </div>
 
