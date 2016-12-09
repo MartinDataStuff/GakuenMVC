@@ -13,7 +13,7 @@ namespace GakuenMVC.Controllers
     {
         private readonly IServiceGateway<Product> _ProductServiceGateway = new DllFacade().GetProductServiceGateway();
         private readonly IServiceGateway<OrderList> _OrderListServiceGateway = new DllFacade().GetOrderListServiceGateway();
-
+        //seseionstate
         private static List<Product> orderList = new List<Product>();
         // GET: Shop
         public ActionResult Index()
