@@ -111,7 +111,5 @@ namespace GakuenMVC.Controllers
            _addresServiceGateway.Delete(id);
             return RedirectToAction("Index");
         }
-
-      
     }
 }

@@ -8,12 +8,13 @@ using System.Web;
 using System.Web.Mvc;
 using DLLGakuen;
 using DLLGakuen.Entity;
+using GakuenMVC.Models;
 
 namespace GakuenMVC.Controllers
 {
     public class SchedulesController : Controller
     {
-       private readonly IServiceGateway<Schedule> _scheduleServiceGateway = new DllFacade().GetScheduleServiceGateway();
+        private readonly IServiceGateway<Schedule> _scheduleServiceGateway = new DllFacade().GetScheduleServiceGateway();
 
         // GET: Schedules
         public ActionResult Index()
@@ -47,7 +48,7 @@ namespace GakuenMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id")] Schedule schedule)
+        public ActionResult Create([Bind(Include = "Id,Day")] Schedule schedule)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +79,7 @@ namespace GakuenMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id")] Schedule schedule)
+        public ActionResult Edit([Bind(Include = "Id,Day")] Schedule schedule)
         {
             if (ModelState.IsValid)
             {
@@ -112,5 +113,23 @@ namespace GakuenMVC.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult OverView()
+        {
+            return View(_scheduleServiceGateway.Read());
+        }
+
+        public ActionResult SchoolEventsInSchedule(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Schedule schedule = _scheduleServiceGateway.Read(id.Value);
+            if (schedule == null)
+            {
+                return HttpNotFound();
+            }
+            return View(schedule);
+        }
     }
 }

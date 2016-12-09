@@ -26,8 +26,8 @@ namespace DLLGakuen.Entity
         public bool ConfirmedUser { get; set; }
         public bool isAdmin { get; set; }
 
-
-        public Schedule Schedule { get; set; }
+        
+        public List<SchoolEvent> SchoolEvents { get; set; }
         public enum Positions
         {
             Teacher, Student

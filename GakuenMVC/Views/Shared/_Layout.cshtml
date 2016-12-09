@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>Gakuen - @ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Styles.Render("~/Content/HomePage.css")
@@ -38,7 +38,13 @@
                         <li>@Html.ActionLink("Om", "About", "Home")</li>
                         <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
                         <li>@Html.ActionLink("Nyheder", "Index", "NewsMessages")</li>
-                        <li>@Html.ActionLink("Brugere", "Index", "Users")</li>
+                        <li>@Html.ActionLink("Køb", "Index", "Shop")</li>
+                        <li>@Html.ActionLink("Kviteringer", "OrderListList", "Shop")</li>
+                        <li>@Html.ActionLink("Confirmer", "Index", "ConfirmPayment")</li>
+                        <li>@Html.ActionLink("Plan", "Overview", "Schedules")</li>
+                        <li>@Html.ActionLink("Skema", "SchemaExampleView", "Schema")</li>
+
+                       <li>@Html.ActionLink("Brugere", "Index", "Users")</li>
                     </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -48,7 +54,10 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p style="text-align: center">
+                &copy; @DateTime.Now.Year Gakuen | Find os på 
+                <a href="https://www.facebook.com/" class="btn btn-default btn-xs"><b>f</b> Facebook</a>
+            </p>
         </footer>
     </div>
 
