@@ -24,7 +24,7 @@ namespace DLLGakuen.Entity
         public string Password { get; set; }
         //Whether the user has accepted the confirm email
         public bool ConfirmedUser { get; set; }
-
+        public bool isAdmin { get; set; }
 
         
         public List<SchoolEvent> SchoolEvents { get; set; }

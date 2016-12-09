@@ -17,7 +17,7 @@
     <div id="header" class="slide img-rounded">
         @foreach (var x in Model.OrderBy(x => x.Id).Reverse().Take(Model.Count()))
         {
-            <a href="@Url.Action("NewsFeed", new {id = x.Id})" class="mySlides">
+            <a href="@Url.Action("NewsFeed","NewsMessages", new {id = x.Id})" class="mySlides">
 
                 <div style=display: inline-block class="img-rounded">
                     <img src="@Html.DisplayFor(modelItem => x.ImageToHost.ImagePath)" class="img-rounded" width="30%" height="300" />
@@ -73,7 +73,7 @@
                 <div class="col-md-4">
 
                     <div class="divimg img-rounded">
-                        <a href="@Url.Action("NewsFeed", new {id = item.Id})" class="divimg img-rounded">
+                        <a href="@Url.Action("NewsFeed","NewsMessages", new {id = item.Id})" class="divimg img-rounded">
                             <img src="@Html.DisplayFor(modelItem => item.ImageToHost.ImagePath)" class="divimg img-rounded" />
                             <span id="wrapper" class="divimg img-rounded">
                                 <p style="font-size: 125%; text-align: center;">

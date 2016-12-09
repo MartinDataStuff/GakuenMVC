@@ -334,7 +334,7 @@
     <Content Include="Views\AdminUsers\Details.cshtml" />
     <Content Include="Views\AdminUsers\Edit.cshtml" />
     <Content Include="Views\AdminUsers\Index.cshtml" />
-    <Content Include="Views\Home\NewsFeed.cshtml" />
+    <Content Include="Views\NewsMessages\NewsFeed.cshtml" />
     <Content Include="Views\Schema\SchemaExampleView.cshtml" />
     <Content Include="Views\Shop\Create.cshtml" />
     <Content Include="Views\Shop\Index.cshtml" />
