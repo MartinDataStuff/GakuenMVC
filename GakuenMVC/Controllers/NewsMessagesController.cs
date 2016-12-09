@@ -51,14 +51,13 @@ namespace GakuenMVC.Controllers
                var news =  newsMessage;
                 if (imageToHost.ImagePath != null)
                 {
-                    var image = _imageToHostServiceGateway.Create(imageToHost);
-                    news.ImageToHost = image;
+                    
+                    news.ImageToHost = imageToHost;
                 }
 
                 if (videoToHost.VideoPath != null)
                 {
-                    var video = _videoToHostServiceGateway.Create(videoToHost);
-                    news.VideoToHost = video;
+                    news.VideoToHost = videoToHost;
                 }
                 _newsMessageServiceGateway.Create(news);
                 return RedirectToAction("Index");
@@ -117,7 +116,17 @@ namespace GakuenMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            var news = _newsMessageServiceGateway.Read(id);
             _newsMessageServiceGateway.Delete(id);
+            if (news.ImageToHost != null)
+            {
+                
+                _imageToHostServiceGateway.Delete(news.ImageToHost.Id);
+            }
+            if (news.VideoToHost != null)
+            {
+                _videoToHostServiceGateway.Delete(news.VideoToHost.Id);
+            }
             return RedirectToAction("Index");
         }
 
