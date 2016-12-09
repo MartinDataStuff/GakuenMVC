@@ -4,18 +4,24 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using DLLGakuen;
 using DLLGakuen.Entity;
+using GakuenMVC.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace GakuenMVC.Controllers
 {
     public class UsersController : Controller
     {
         private readonly IServiceGateway<User> _userServiceGateway = new DllFacade().GetUserServiceGateway();
+        
 
         // GET: Users
+        //[Authorize(Users = "isAdmin")]
         public ActionResult Index()
         {
             var users = _userServiceGateway.Read();
@@ -49,15 +55,53 @@ namespace GakuenMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Email,UserName,PhoneNr,AddressId,ScheduleId,Position")] User user)
+        public async Task<ActionResult> Create([Bind(Include = "Id,FirstName,LastName,Email,UsrName,PhoneNr,Address,Birthday, ContactPersonPhoneNumber, " +
+                                                   "Password, ConfirmPassword, isAdmin")] RegisterViewModel user)
         {
             if (ModelState.IsValid)
             {
-                _userServiceGateway.Create(user);
+
+                AccountController acc = new AccountController();
+                await acc.Register(user);
+
+                //var appUser = new ApplicationUser
+                //{
+                //    UserName = user.UsrName,
+                //    Email = user.Email,
+                //    UsrName = user.UsrName,
+                //    Password = user.Password,
+                //    FirstName = user.FirstName,
+                //    LastName = user.LastName,
+                //    Address = user.Address,
+                //    PhoneNr = user.PhoneNr,
+                //    ContactPersonPhoneNumber = user.ContactPersonPhoneNumber,
+                //    Birthday = user.Birthday,
+                //    IsAdmin = true
+
+
+
+                //};
+
+                //var usr = new User
+                //{
+                //    Address = appUser.Address,
+                //    FirstName = appUser.FirstName,
+                //    LastName = appUser.LastName,
+                //    Birthday = appUser.Birthday,
+                //    ContactPersonPhoneNumber = appUser.ContactPersonPhoneNumber,
+                //    Email = appUser.Email,
+                //    Password = appUser.Password,
+                //    PhoneNr = appUser.PhoneNr,
+                //    UsrName = appUser.UsrName,
+                //    isAdmin = appUser.IsAdmin
+                //};
+
+
+                //_userServiceGateway.Create(usr);
                 return RedirectToAction("Index");
             }
 
-          
+            // If we got this far, something failed, redisplay form
             return View(user);
         }
 

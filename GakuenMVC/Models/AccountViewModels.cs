@@ -78,7 +78,7 @@ namespace GakuenMVC.Models
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Adgangskode")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
@@ -87,15 +87,24 @@ namespace GakuenMVC.Models
         public string ConfirmPassword { get; set; }
 
         [Required]
+        [Display(Name = "Brugernavn")]
         public string UsrName { get; set; }
+        [Display(Name = "Fornavn")]
         public string FirstName { get; set; }
+        [Display(Name = "Efternavn")]
         public string LastName { get; set; }
+        [Display(Name = "Adresse")]
         public Address Address { get; set; }
+        [Display(Name = "Telefon nr")]
         public string PhoneNr { get; set; }
+        [Display(Name = "Kontaktperson's Telefon nr")]
         public int ContactPersonPhoneNumber { get; set; }
-        public DateTime Birthday { get; set; }        
-        
-        
+        [Display(Name = "Fødselsdag")]
+        public DateTime Birthday { get; set; }
+        public bool isAdmin { get; set; }
+
+
+
 
 
 
