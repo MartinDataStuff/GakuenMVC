@@ -9,6 +9,6 @@ namespace GakuenMVC.Models
 {
     class ShoppingCart
     {
-        public List<Product> Products { get; set; }
+        public IDictionary<int, Product> Products { get; set; } = new Dictionary<int, Product>();
     }
 }
