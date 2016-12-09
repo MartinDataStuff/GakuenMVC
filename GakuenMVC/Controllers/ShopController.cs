@@ -11,34 +11,46 @@ namespace GakuenMVC.Controllers
 {
     public class ShopController : Controller
     {
-        private readonly IServiceGateway<Product> _ProductServiceGateway = new DllFacade().GetProductServiceGateway();
-        private readonly IServiceGateway<OrderList> _OrderListServiceGateway = new DllFacade().GetOrderListServiceGateway();
-
-        private static List<Product> orderList = new List<Product>();
+        private readonly IServiceGateway<Product> _productServiceGateway = new DllFacade().GetProductServiceGateway();
+        private readonly IServiceGateway<OrderList> _orderListServiceGateway = new DllFacade().GetOrderListServiceGateway();
+        
         // GET: Shop
         public ActionResult Index()
         {
-            ViewBag.Products = _ProductServiceGateway.Read();
-            ViewBag.Orderlist = orderList;
+            ViewBag.Products = _productServiceGateway.Read();
+
+            var cart = Session["cart"] as ShoppingCart;
+            if (cart == null) cart = new ShoppingCart();
+            Session["cart"] = cart;
+            ViewBag.Orderlist = cart.Products;
+
             return View();
         }
 
         // GET: Shop/ConfirmBuy/5
-        
+
         public ActionResult ConfirmBuy(int id)
         {
-            orderList.Add(_ProductServiceGateway.Read().Find(x => x.Id == id));
-            ViewBag.Products = _ProductServiceGateway.Read();
-            ViewBag.Orderlist = orderList;
+            var cart = Session["cart"] as ShoppingCart;
+            if (cart == null) cart = new ShoppingCart();
+            cart.Products.Add(_productServiceGateway.Read(id));
+            Session["cart"] = cart;
             return RedirectToAction("Index");
         }
         // GET: Shop/Remove/5
 
         public ActionResult Remove(int id)
         {
-            orderList.RemoveAll(x => x.Id == id);
-            ViewBag.Products = _ProductServiceGateway.Read();
-            ViewBag.Orderlist = orderList;
+            var cart = Session["cart"] as ShoppingCart;
+            if (cart == null) cart = new ShoppingCart();
+            Session["cart"] = cart;
+            cart.Products.RemoveAll(x => x.Id == id);
+
+            ViewBag.Products = _productServiceGateway.Read();
+
+            ViewBag.Orderlist = cart.Products;
+            Session["cart"] = cart;
+
             return RedirectToAction("Index");
         }
         // GET: Shop/Create
@@ -49,11 +61,11 @@ namespace GakuenMVC.Controllers
 
         // POST: Shop/Create
         [HttpPost]
-        public ActionResult Create(string info,string name,double price, FormCollection collection)
+        public ActionResult Create(string info, string name, double price, FormCollection collection)
         {
             try
             {
-                
+
                 return RedirectToAction("Index");
             }
             catch
@@ -66,10 +78,16 @@ namespace GakuenMVC.Controllers
         [HttpPost]
         public ActionResult Buylist()
         {
+            var cart = Session["cart"] as ShoppingCart;
+            if (cart == null) cart = new ShoppingCart();
             
-            ORLImpirt = _OrderListServiceGateway.Create(new OrderList() { ItemsList = orderList });
+
+            ORLImpirt = _orderListServiceGateway.Create(new OrderList() { ItemsList = cart.Products });
             new CodeMaker(ORLImpirt);
-            orderList.Clear();
+            cart.Products.Clear();
+
+            Session["cart"] = cart;
+
             return RedirectToAction("ListInfo");
         }
         // GET: Shop/ListInfo
@@ -81,7 +99,7 @@ namespace GakuenMVC.Controllers
         // GET: Shop/OrderListList
         public ActionResult OrderListList()
         {
-            return View(_OrderListServiceGateway.Read());
+            return View(_orderListServiceGateway.Read());
         }
     }
 }
