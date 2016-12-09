@@ -28,20 +28,5 @@ namespace GakuenMVC.Controllers
 
             return View();
         }
-
-        // GET: Home/NewsFeed/5
-        public ActionResult NewsFeed(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            NewsMessage news = _newsMessageServiceGateway.Read(id.Value);
-            if (news == null)
-            {
-                return HttpNotFound();
-            }
-            return View(news);
-        }
     }
 }

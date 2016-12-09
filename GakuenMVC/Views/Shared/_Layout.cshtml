@@ -1,4 +1,7 @@
 ﻿<!DOCTYPE html>
+@using DLLGakuen.Entity
+@using System.Linq;
+@model IEnumerable<DLLGakuen.Entity.NewsMessage>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -7,7 +10,6 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Styles.Render("~/Content/HomePage.css")
-
     <script type="text/javascript">
         var appInsights = window.appInsights || function (config) {
             function r(config) { t[config] = function () { var i = arguments; t.queue.push(function () { t[config].apply(t, i) }) } } var t = { config: config }, u = document, e = window, o = "script", s = u.createElement(o), i, f; for (s.src = config.url || "//az416426.vo.msecnd.net/scripts/a/ai.0.js", u.getElementsByTagName(o)[0].parentNode.appendChild(s), t.cookie = u.cookie, t.queue = [], i = ["Event", "Exception", "Metric", "PageView", "Trace"]; i.length;) r("track" + i.pop()); return r("setAuthenticatedUserContext"), r("clearAuthenticatedUserContext"), config.disableExceptionTracking || (i = "onerror", r("_" + i), f = e[i], e[i] = function (config, r, u, e, o) { var s = f && f(config, r, u, e, o); return s !== !0 && t["_" + i](config, r, u, e, o), s }), t
@@ -32,33 +34,58 @@
                 </button>
             </div>
             <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li id="magic" style="font-size: 300%">@Html.ActionLink("Gakuen", "Index", "Home")</li>
-                        <li>@Html.ActionLink("Hjem", "Index", "Home")</li>
-                        <li>@Html.ActionLink("Om", "About", "Home")</li>
-                        <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
-                        <li>@Html.ActionLink("Nyheder", "Index", "NewsMessages")</li>
-                        <li>@Html.ActionLink("Køb", "Index", "Shop")</li>
-                        <li>@Html.ActionLink("Kviteringer", "OrderListList", "Shop")</li>
-                        <li>@Html.ActionLink("Confirmer", "Index", "ConfirmPayment")</li>
-                        <li>@Html.ActionLink("Plan", "Overview", "Schedules")</li>
-                        <li>@Html.ActionLink("Skema", "SchemaExampleView", "Schema")</li>
-                    </ul>
+                <ul class="nav navbar-nav">
+                    <li id="magic" style="font-size: 300%">@Html.ActionLink("Gakuen", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Hjem", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Om", "About", "Home")</li>
+                    <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Nyheder", "Index", "NewsMessages")</li>
+                    <li>@Html.ActionLink("Køb", "Index", "Shop")</li>
+                    <li>@Html.ActionLink("Kviteringer", "OrderListList", "Shop")</li>
+                    <li>@Html.ActionLink("Confirmer", "Index", "ConfirmPayment")</li>
+                    <li>@Html.ActionLink("Plan", "Overview", "Schedules")</li>
+                    <li>@Html.ActionLink("Skema", "SchemaExampleView", "Schema")</li>
+                </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
+@*-------NewsSLider Start---------*@
+    @{
+        int p = 0;
+    }
+    <div id="header" class="slide img-rounded">
+        @foreach (var x in Model.OrderBy(x => x.Id).Reverse().Take(Model.Count()))
+        {
+            <a href="@Url.Action("NewsFeed","NewsMessages", new {id = x.Id})" class="mySlides">
+
+                <div style=display: inline-block class="img-rounded">
+                    <img src="@Html.DisplayFor(modelItem => x.ImageToHost.ImagePath)" class="img-rounded" width="30%" height="300" />
+                </div>
+                <span id="slidewrap" class="img-rounded">
+
+                    <b>@Html.DisplayFor(modelItem => x.Title)</b>
+                    <br />
+                    @Html.DisplayFor(modelItem => x.Body)
+
+                </span>
+            </a>
+            if (++p == 3) { break; }
+        }
+        <a id="left" class="img-rounded" onclick="plusDivs(-1)"><p><<</p></a>
+        <a id="right" class="img-rounded" onclick="plusDivs(+1)"><p>>></p></a>
+    </div>
+    @*-------NewsSLider end---------*@
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
             <p style="text-align: center">
-                &copy; @DateTime.Now.Year Gakuen | Find os på 
+                &copy; @DateTime.Now.Year Gakuen | Find os på
                 <a href="https://www.facebook.com/" class="btn btn-default btn-xs"><b>f</b> Facebook</a>
             </p>
         </footer>
     </div>
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
