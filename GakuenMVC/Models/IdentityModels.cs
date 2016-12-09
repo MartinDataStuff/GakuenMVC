@@ -20,6 +20,8 @@ namespace GakuenMVC.Models
         public string PhoneNr { get; set; }
         public int ContactPersonPhoneNumber { get; set; }
         public DateTime Birthday { get; set; }
+        public bool IsAdmin { get; set; }
+
 
 
 

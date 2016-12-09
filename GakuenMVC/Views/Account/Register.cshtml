@@ -1,7 +1,7 @@
 ﻿@using DLLGakuen.Entity
 @model GakuenMVC.Models.RegisterViewModel
 @{
-    ViewBag.Title = "Registrering";
+    ViewBag.Title = "Tilmeldning";
 }
 
 <h2>@ViewBag.Title</h2>
@@ -9,7 +9,7 @@
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
 {
     @Html.AntiForgeryToken()
-    <h4>Opret en ny konto</h4>
+    <h4> Opret en ny konto</h4>
     <hr/>
 
     <div class="form-group">
@@ -85,13 +85,12 @@
     <div class="form-group">
         @Html.Label("Fødselsdag", new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Birthday, new { @class = "form-control" })
+            <input class="form-control" data-val="true" data-val-date="The field Birthday must be a date." 
+                   data-val-required="Feltet Birthday skal udfyldes." id="Birthday" name="Birthday" type="text" value="", 
+                   placeholder ="DD-MM-YYYY">
         </div>
     </div>
 
-
-
-    @Html.ValidationSummary("", new {@class = "text-danger"})
     <div class="form-group">
         @Html.LabelFor(m => m.Email, new {@class = "col-md-2 control-label"})
         <div class="col-md-10">
@@ -99,22 +98,24 @@
         </div>
     </div>
     <div class="form-group">
-        @Html.Label("Kode", new {@class = "col-md-2 control-label"})
+        @Html.Label("Adgangskode", new {@class = "col-md-2 control-label"})
         <div class="col-md-10">
             @Html.PasswordFor(m => m.Password, new {@class = "form-control"})
         </div>
     </div>
     <div class="form-group">
-        @Html.Label("Bekræft kode", new {@class = "col-md-2 control-label"})
+        @Html.Label("Bekræft Adgangskode", new {@class = "col-md-2 control-label"})
         <div class="col-md-10">
             @Html.PasswordFor(m => m.ConfirmPassword, new {@class = "form-control"})
         </div>
     </div>
 
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register"/>
+            <input type="submit" class="btn btn-success" value="Register"/>
         </div>
     </div>
 }

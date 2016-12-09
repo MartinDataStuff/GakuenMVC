@@ -17,7 +17,8 @@ namespace GakuenMVC.Controllers
     
     public class AccountController : Controller
     {
-        private IServiceGateway<User> _user = new DllFacade().GetUserServiceGateway();
+        private ApplicationUser _usr;
+        private readonly IServiceGateway<User> _user = new DllFacade().GetUserServiceGateway();
 
 
         private ApplicationSignInManager _signInManager;
@@ -25,6 +26,7 @@ namespace GakuenMVC.Controllers
 
         public AccountController()
         {
+            
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -156,21 +158,65 @@ namespace GakuenMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.UsrName, Email = model.Email, UsrName = model.UsrName, Password = model.Password,
-                    FirstName = model.FirstName, LastName = model.LastName, Address = model.Address, PhoneNr = model.PhoneNr,
-                    ContactPersonPhoneNumber = model.ContactPersonPhoneNumber, Birthday = model.Birthday};
-
+                //var user = new ApplicationUser { UserName = model.UsrName, Email = model.Email, UsrName = model.UsrName, Password = model.Password,
+                //    FirstName = model.FirstName, LastName = model.LastName, Address = model.Address, PhoneNr = model.PhoneNr,
+                //    ContactPersonPhoneNumber = model.ContactPersonPhoneNumber, Birthday = model.Birthday, isAdmin = model.isAdmin};
                 
-                var userSave = new User {Email = user.Email, UsrName = user.UsrName, FirstName = user.FirstName, LastName = user.LastName,
-                    Password = user.Password, Address = user.Address, PhoneNr = user.PhoneNr, ContactPersonPhoneNumber = user.ContactPersonPhoneNumber,
-                Birthday = user.Birthday};
+                foreach (var users in _user.Read())
+                {
+                    if (!users.isAdmin)
+                    {
+                        _usr = new ApplicationUser
+                        {
+                            UserName = model.UsrName,
+                            Email = model.Email,
+                            UsrName = model.UsrName,
+                            Password = model.Password,
+                            FirstName = model.FirstName,
+                            LastName = model.LastName,
+                            Address = model.Address,
+                            PhoneNr = model.PhoneNr,
+                            ContactPersonPhoneNumber = model.ContactPersonPhoneNumber,
+                            Birthday = model.Birthday,
+                            IsAdmin = true
+
+                            
+                            
+                        };
+                        
+                        break;
+                    }
+                    else
+                    {
+                        _usr = new ApplicationUser
+                        {
+                            UserName = model.UsrName,
+                            Email = model.Email,
+                            UsrName = model.UsrName,
+                            Password = model.Password,
+                            FirstName = model.FirstName,
+                            LastName = model.LastName,
+                            Address = model.Address,
+                            PhoneNr = model.PhoneNr,
+                            ContactPersonPhoneNumber = model.ContactPersonPhoneNumber,
+                            Birthday = model.Birthday,
+                            
+                        };
+                        
+                        break;
+                    }
+                }
+
+                var userSave = new User {Email = _usr.Email, UsrName = _usr.UsrName, FirstName = _usr.FirstName, LastName = _usr.LastName,
+                    Password = _usr.Password, Address = _usr.Address, PhoneNr = _usr.PhoneNr, ContactPersonPhoneNumber = _usr.ContactPersonPhoneNumber,
+                Birthday = _usr.Birthday};
 
                 _user.Create(userSave);
 
-                var result = await UserManager.CreateAsync(user, model.Password);
+                var result = await UserManager.CreateAsync(_usr, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                    await SignInManager.SignInAsync(_usr, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
