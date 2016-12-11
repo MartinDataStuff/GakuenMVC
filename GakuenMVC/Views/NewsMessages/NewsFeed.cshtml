@@ -6,35 +6,6 @@
     @Styles.Render("~/Content/HomePage.css")
 </head>
 <body>
-<div class="container">
-    <br/>
-    <div id="content" class="img-rounded" style="height: 300px;">
         <p>@Html.DisplayFor(model => model.Title)</p>
         <p>@Html.DisplayFor(model => model.Body)</p>
-    </div>
-
-    <div id="sidebar" class="img-rounded" style="text-align: center; top: 20px;">
-        <p style="font-size: 150%">
-            <b>-LOG IND-</b>
-        </p>
-        <form style="width: 80%; margin: 0 auto;">
-            <div class="form-group">
-                <label for="UserName">Brugernavn</label>
-                <input type="text" class="form-control" id="UserName" placeholder="Brugernavn">
-            </div>
-            <div class="form-group">
-                <label for="Password">Adgangskode</label>
-                <input type="password" class="form-control" id="Password" placeholder="Adgangskode">
-            </div>
-            <div>
-                <button style="width: auto" type="button" class="btn btn-danger form-control">LOG IND</button>
-                <br/>
-                <br/>
-                <p>Kan ikke logge ind?</p>
-                <p>Opret en bruger</p>
-            </div>
-        </form>
-    </div>
-
-</div>
 </body>
