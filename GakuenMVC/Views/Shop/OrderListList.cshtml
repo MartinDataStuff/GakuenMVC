@@ -4,6 +4,26 @@
     ViewBag.Title = "OrderListList";
 }
 
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #fe8686;
+    }
+</style>
+
+
+
 <h2>OrderListList</h2>
 
 <p>
@@ -20,7 +40,10 @@
         <th>
             @Html.DisplayNameFor(model => model.DateTime)
         </th>
-        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaymentAccepted)
+        </th>
+        <th>Info</th>
     </tr>
 
 @foreach (var item in Model) {
@@ -35,7 +58,10 @@
             @Html.DisplayFor(modelItem => item.DateTime)
         </td>
         <td>
-            @Html.ActionLink("Details", "ListInfo", new { id=item.Id }) |
+            @Html.DisplayFor(modelItem => item.PaymentAccepted)
+        </td>
+        <td>
+            @Html.ActionLink("Info", "ListInfo", new { id=item.Id })
         </td>
     </tr>
 }

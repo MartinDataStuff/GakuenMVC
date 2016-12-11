@@ -4,6 +4,24 @@
     ViewBag.Title = "ListInfo";
 }
 
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #fe8686;
+    }
+</style>
+
 <h2>ListInfo</h2>
 
 <div>
@@ -36,6 +54,31 @@
 
     </dl>
 </div>
+
+<h2>produckts</h2>
+<table>
+    <tr>
+        <th>?</th>
+        <th>Name</th>
+        <th>Price</th>
+    </tr>
+    @{
+        foreach (var pro in Model.ItemsList)
+        {
+            <tr>
+                <td>
+                    <form>
+                        <button onclick="infoFunktion('@pro.Info')">?</button>
+                    </form>
+                </td>
+
+                <td>@pro.Name</td>
+                <td>@pro.Price</td>
+            </tr>
+        }
+    }
+</table>
+
 <p>
     @Html.ActionLink("Back to List", "OrderListList")
 </p>

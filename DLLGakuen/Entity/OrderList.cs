@@ -11,7 +11,7 @@ namespace DLLGakuen.Entity
         public List<Product> ItemsList { get; set; } = new List<Product>();
         public User User { get; set; }
         public string PaidStringCode { get; set; }
-
+        public bool PaymentAccepted { get; set; } = false;
         public double PriceToPay => CalculatePrice();
 
         public DateTime DateTime { get; set; } = DateTime.Now;
