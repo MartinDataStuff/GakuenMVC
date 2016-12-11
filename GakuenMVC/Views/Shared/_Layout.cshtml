@@ -19,36 +19,38 @@
     </script>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li id="magic" style="font-size: 300%">@Html.ActionLink("Gakuen", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Hjem", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Om", "About", "Home")</li>
-                    <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Nyheder", "Index", "NewsMessages")</li>
-                    <li>@Html.ActionLink("Køb", "Index", "Shop")</li>
-                    <li>@Html.ActionLink("Kviteringer", "OrderListList", "Shop")</li>
-                    <li>@Html.ActionLink("Confirmer", "Index", "ConfirmPayment")</li>
-                    <li>@Html.ActionLink("Plan", "Overview", "Schedules")</li>
-                    <li>@Html.ActionLink("Skema", "SchemaExampleView", "Schema")</li>
-                    <li>@Html.ActionLink("Brugere", "Index", "Users")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li id="magic" style="font-size: 300%">@Html.ActionLink("Gakuen", "Index", "Home")</li>
+                <li>@Html.ActionLink("Hjem", "Index", "Home")</li>
+                <li>@Html.ActionLink("Om", "About", "Home")</li>
+                <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
+                <li>@Html.ActionLink("Nyheder", "Index", "NewsMessages")</li>
+                <li>@Html.ActionLink("Køb", "Index", "Shop")</li>
+                <li>@Html.ActionLink("Kviteringer", "OrderListList", "Shop")</li>
+                <li>@Html.ActionLink("Confirmer", "Index", "ConfirmPayment")</li>
+                <li>@Html.ActionLink("Plan", "Overview", "Schedules")</li>
+                <li>@Html.ActionLink("Skema", "SchemaExampleView", "Schema")</li>
+                <li>@Html.ActionLink("Brugere", "Index", "Users")</li>
+            </ul>
+            @Html.Partial("_LoginPartial")
         </div>
     </div>
-    @RenderSection("slideshow", false)
+</div>
+
+    <div class="container">
+        @RenderSection("slideshow", false)
     <div class="container">
         <div id="content" class="img-rounded">
             @RenderBody()
@@ -76,6 +78,7 @@
             </form>
         </div>
     </div>
+</div>
 
     <hr />
     <footer>
