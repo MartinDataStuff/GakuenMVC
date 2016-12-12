@@ -49,16 +49,10 @@ namespace GakuenMVC.Controllers
             if (ModelState.IsValid)
             {
                var news =  newsMessage;
-                if (imageToHost.ImagePath != null)
-                {
-                    
-                    news.ImageToHost = imageToHost;
-                }
 
-                if (videoToHost.VideoPath != null)
-                {
-                    news.VideoToHost = videoToHost;
-                }
+                news.ImageToHost = imageToHost;
+                news.VideoToHost = videoToHost;
+                
                 _newsMessageServiceGateway.Create(news);
                 return RedirectToAction("Index");
             }
@@ -86,11 +80,13 @@ namespace GakuenMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Body")] NewsMessage newsMessage)
+        public ActionResult Edit([Bind(Include = "Id,Title,Body,ImageToHost,VideoToHost")] NewsMessage newsMessage)
         {
             if (ModelState.IsValid)
             {
                 _newsMessageServiceGateway.Update(newsMessage);
+                _imageToHostServiceGateway.Update(newsMessage.ImageToHost);
+                _videoToHostServiceGateway.Update(newsMessage.VideoToHost);
                 return RedirectToAction("Index");
             }
             return View(newsMessage);
