@@ -13,7 +13,7 @@ namespace GakuenMVC.Controllers
     {
         private readonly IServiceGateway<Product> _productServiceGateway = new DllFacade().GetProductServiceGateway();
         private readonly IServiceGateway<OrderList> _orderListServiceGateway = new DllFacade().GetOrderListServiceGateway();
-        
+        private static OrderList ORLImpirt = new OrderList();
         // GET: Shop
         public ActionResult Index()
         {
@@ -62,27 +62,7 @@ namespace GakuenMVC.Controllers
 
             return RedirectToAction("Index");
         }
-        // GET: Shop/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Shop/Create
-        [HttpPost]
-        public ActionResult Create(string info, string name, double price, FormCollection collection)
-        {
-            try
-            {
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-        private static OrderList ORLImpirt = new OrderList();
+        
         // POST: Shop/Buylist
         [HttpPost]
         public ActionResult Buylist()
@@ -96,13 +76,12 @@ namespace GakuenMVC.Controllers
 
             Session["cart"] = cart;
 
-            return RedirectToAction("ListInfo");
+            return RedirectToAction($"ListInfo/{ORLImpirt.Id}");
         }
         // GET: Shop/ListInfo
-        public ActionResult ListInfo()
+        public ActionResult ListInfo(int id)
         {
-            ViewBag.Products = ORLImpirt.ItemsList;
-            return View(ORLImpirt);
+            return View(_orderListServiceGateway.Read(id));
         }
         // GET: Shop/OrderListList
         public ActionResult OrderListList()
