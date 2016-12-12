@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using DLLGakuen;
 using DLLGakuen.Entity;
 using GakuenMVC.Models;
+using RestSharp.Extensions;
 
 namespace GakuenMVC.Controllers
 {
@@ -97,6 +98,7 @@ namespace GakuenMVC.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             OrderList orderList = _db.Read(id.Value);
+            
             if (orderList == null)
             {
                 return HttpNotFound();
