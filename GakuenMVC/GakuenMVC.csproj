@@ -224,8 +224,8 @@
     <Compile Include="Controllers\EventMessagesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MyPageController.cs" />
     <Compile Include="Controllers\NewsMessagesController.cs" />
-    <Compile Include="Controllers\OrderListsController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\SchedulesController.cs" />
     <Compile Include="Controllers\SchemaController.cs" />
@@ -272,6 +272,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\slideshow.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -352,11 +353,6 @@
     <Content Include="Views\SchoolEvents\Details.cshtml" />
     <Content Include="Views\SchoolEvents\Edit.cshtml" />
     <Content Include="Views\SchoolEvents\Index.cshtml" />
-    <Content Include="Views\OrderLists\Create.cshtml" />
-    <Content Include="Views\OrderLists\Delete.cshtml" />
-    <Content Include="Views\OrderLists\Details.cshtml" />
-    <Content Include="Views\OrderLists\Edit.cshtml" />
-    <Content Include="Views\OrderLists\Index.cshtml" />
     <Content Include="Views\Products\Create.cshtml" />
     <Content Include="Views\Products\Delete.cshtml" />
     <Content Include="Views\Products\Details.cshtml" />
@@ -372,6 +368,8 @@
     <Content Include="Views\SchoolEvents\SchoolEventDetail.cshtml" />
     <Content Include="Views\Shop\ListInfo.cshtml" />
     <Content Include="Views\Shop\OrderListList.cshtml" />
+    <Content Include="Views\ConfirmPayment\Check.cshtml" />
+    <Content Include="Views\MyPage\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

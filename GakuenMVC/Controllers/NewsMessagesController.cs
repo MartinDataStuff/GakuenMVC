@@ -49,17 +49,10 @@ namespace GakuenMVC.Controllers
             if (ModelState.IsValid)
             {
                var news =  newsMessage;
-                if (imageToHost.ImagePath != null)
-                {
-                    var image = _imageToHostServiceGateway.Create(imageToHost);
-                    news.ImageToHost = image;
-                }
 
-                if (videoToHost.VideoPath != null)
-                {
-                    var video = _videoToHostServiceGateway.Create(videoToHost);
-                    news.VideoToHost = video;
-                }
+                news.ImageToHost = imageToHost;
+                news.VideoToHost = videoToHost;
+                
                 _newsMessageServiceGateway.Create(news);
                 return RedirectToAction("Index");
             }
@@ -87,11 +80,13 @@ namespace GakuenMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Body")] NewsMessage newsMessage)
+        public ActionResult Edit([Bind(Include = "Id,Title,Body,ImageToHost,VideoToHost")] NewsMessage newsMessage)
         {
             if (ModelState.IsValid)
             {
                 _newsMessageServiceGateway.Update(newsMessage);
+                _imageToHostServiceGateway.Update(newsMessage.ImageToHost);
+                _videoToHostServiceGateway.Update(newsMessage.VideoToHost);
                 return RedirectToAction("Index");
             }
             return View(newsMessage);
@@ -117,7 +112,17 @@ namespace GakuenMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            var news = _newsMessageServiceGateway.Read(id);
             _newsMessageServiceGateway.Delete(id);
+            if (news.ImageToHost != null)
+            {
+                
+                _imageToHostServiceGateway.Delete(news.ImageToHost.Id);
+            }
+            if (news.VideoToHost != null)
+            {
+                _videoToHostServiceGateway.Delete(news.VideoToHost.Id);
+            }
             return RedirectToAction("Index");
         }
 

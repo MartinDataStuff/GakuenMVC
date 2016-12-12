@@ -4,110 +4,60 @@
 @{
     ViewBag.Title = "Home Page";
 }
-
-<head>
-    @Styles.Render("~/Content/HomePage.css")
-</head>
+@Scripts.Render("~/Scripts/slideshow.js")
 
 <body>
-    <br />
-    @{
-        int p = 0;
-    }
-    <div id="header" class="slide img-rounded">
-        @foreach (var x in Model.OrderBy(x => x.Id).Reverse().Take(Model.Count()))
-        {
-            <a href="@Url.Action("NewsFeed","NewsMessages", new {id = x.Id})" class="mySlides">
 
-                <div style=display: inline-block class="img-rounded">
-                    <img src="@Html.DisplayFor(modelItem => x.ImageToHost.ImagePath)" class="img-rounded" width="30%" height="300" />
-                </div>
-                <span id="slidewrap" class="img-rounded">
-                    
+    @section slideshow{
+        @{
+            int p = 0;
+        }
+        <div id="header" class="slide img-rounded">
+            @foreach (var x in Model.OrderBy(x => x.Id).Reverse().Take(Model.Count()))
+            {
+                <a href="@Url.Action("NewsFeed", "NewsMessages", new {id = x.Id})" class="mySlides">
+
+                    <div style=display: inline-block class="img-rounded">
+                        <img src="@Html.DisplayFor(modelItem => x.ImageToHost.ImagePath)" class="img-rounded" width="30%" height="300" />
+                    </div>
+                    <span id="slidewrap" class="img-rounded">
+
                         <b>@Html.DisplayFor(modelItem => x.Title)</b>
                         <br />
                         @Html.DisplayFor(modelItem => x.Body)
-                    
-                </span>
+
+                    </span>
+                </a>
+                if (++p == 3)
+                {
+                    break;
+                }
+            }
+            <a id="left" class="img-rounded noselect" onclick="plusDivs(-1)">
+                <p><<</p>
             </a>
-            if (++p == 3) { break; }
-        }
-        <a id="left" class="img-rounded" onclick="plusDivs(-1)"><p><<</p></a>
-        <a id="right" class="img-rounded" onclick="plusDivs(+1)"><p>>></p></a>
-    </div>
-    <script>
-        var slideIndex = 0;
-        carousel();
+            <a id="right" class="img-rounded noselect" onclick="plusDivs(+1)"><p>>></p></a>
+        </div>
+    }
 
-        function plusDivs(n) {
-            showDivs(slideIndex += n);
-        }
-
-        function showDivs(n) {
-            var i;
-            var x = document.getElementsByClassName("mySlides");
-            if (n > x.length) { slideIndex = 1 }
-            if (n < 1) { slideIndex = x.length }
-            for (i = 0; i < x.length; i++) {
-                x[i].style.display = "none";
-            }
-            x[slideIndex - 1].style.display = "block";
-        }
-        function carousel() {
-            var i;
-            var x = document.getElementsByClassName("mySlides");
-            for (i = 0; i < x.length; i++) {
-                x[i].style.display = "none";
-            }
-            slideIndex++;
-            if (slideIndex > x.length) { slideIndex = 1 }
-            x[slideIndex - 1].style.display = "block";
-            setTimeout(carousel, 8000); // Change image every 8 seconds
-        }
-    </script>
-    <div class="container">
-        <div id="content" class="img-rounded">
-            <br />
-            @foreach (var item in Model.Reverse())
+    <br />
+    @foreach (var item in Model.Reverse())
             {
-                <div class="col-md-4">
+        <div class="col-md-4">
 
-                    <div class="divimg img-rounded">
-                        <a href="@Url.Action("NewsFeed","NewsMessages", new {id = item.Id})" class="divimg img-rounded">
-                            <img src="@Html.DisplayFor(modelItem => item.ImageToHost.ImagePath)" class="divimg img-rounded" />
-                            <span id="wrapper" class="divimg img-rounded">
-                                <p style="font-size: 125%; text-align: center;">
-                                    <b>@Html.DisplayFor(modelItem => item.Title)</b>
-                                    <br />
-                                    @Html.DisplayFor(modelItem => item.Body)
-                                </p>
-                            </span>
-                        </a>
-                    </div>
-                </div>
-            }
-            <div class="row"></div>
+            <div class="divimg img-rounded">
+                <a href="@Url.Action("NewsFeed","NewsMessages", new {id = item.Id})" class="divimg img-rounded">
+                    <img src="@Html.DisplayFor(modelItem => item.ImageToHost.ImagePath)" class="divimg img-rounded" />
+                    <span id="wrapper" class="divimg img-rounded">
+                        <p style="font-size: 125%; text-align: center;">
+                            <b>@Html.DisplayFor(modelItem => item.Title)</b>
+                            <br />
+                            @Html.DisplayFor(modelItem => item.Body)
+                        </p>
+                    </span>
+                </a>
+            </div>
         </div>
-        <div id="sidebar" class="img-rounded" style="text-align: center">
-            <p style="font-size: 150%"><b>-LOG IND-</b></p>
-            <form style="width: 80%;margin: 0 auto;">
-                <div class="form-group">
-                    <label for="UserName">Brugernavn</label>
-                    <input type="text" class="form-control" id="UserName" placeholder="Brugernavn">
-                </div>
-                <div class="form-group">
-                    <label for="Password">Adgangskode</label>
-                    <input type="password" class="form-control" id="Password" placeholder="Adgangskode">
-                </div>
-                <div>
-                    <button style="width: auto" type="button" class="btn btn-danger form-control">LOG IND</button>
-                    <br />
-                    <br />
-                    <p>Kan ikke logge ind?</p>
-                    <p>Opret en bruger</p>
-                </div>
-            </form>
-        </div>
-
-    </div>
+    }
+    <div class="row"></div>
 </body>

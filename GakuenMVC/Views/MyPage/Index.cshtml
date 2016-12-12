@@ -1,0 +1,17 @@
+﻿@using DLLGakuen.Entity
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>here is a list of all Produckts</h2>
+
+@{
+    foreach (OrderList Orders in ViewBag.AllOrders)
+    {
+        foreach (var Produckt in Orders.ItemsList)
+        {
+            <h2>@Produckt.Name</h2>
+        }
+    }
+}

@@ -55,17 +55,10 @@ namespace GakuenMVC.Controllers
             if (ModelState.IsValid)
             {
                 var message = eventMessage;
-                if (imageToHost.ImagePath != null)
-                {
-                    var image = _imageToHostServiceGateway.Create(imageToHost);
-                    message.ImageToHost = image;
-                }
-
-                if (videoToHost.VideoPath != null)
-                {
-                    var video = _videoToHostServiceGateway.Create(videoToHost);
-                    message.VideoToHost = video;
-                }
+               
+                    message.ImageToHost = imageToHost;    
+                    message.VideoToHost = videoToHost;
+                
                 _eventMessageServiceGateway.Create(message);
                 return RedirectToAction("Index");
             }
@@ -93,11 +86,14 @@ namespace GakuenMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Body")] EventMessage eventMessage)
+        public ActionResult Edit([Bind(Include = "Id,Title,Body,ImageToHost,VideoToHost")] EventMessage eventMessage)
         {
             if (ModelState.IsValid)
             {
                 _eventMessageServiceGateway.Update(eventMessage);
+                _imageToHostServiceGateway.Update(eventMessage.ImageToHost);
+                _videoToHostServiceGateway.Update(eventMessage.VideoToHost);
+
                 return RedirectToAction("Index");
             }
             return View(eventMessage);
@@ -123,7 +119,16 @@ namespace GakuenMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            var eventMessage = _eventMessageServiceGateway.Read(id);
             _eventMessageServiceGateway.Delete(id);
+            if (eventMessage.ImageToHost != null)
+            {
+                _imageToHostServiceGateway.Delete(eventMessage.ImageToHost.Id);
+            }
+            if (eventMessage.VideoToHost != null)
+            {
+                _videoToHostServiceGateway.Delete(eventMessage.VideoToHost.Id);
+            }
             return RedirectToAction("Index");
         }
 

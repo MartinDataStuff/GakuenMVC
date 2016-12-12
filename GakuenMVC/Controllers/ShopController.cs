@@ -22,7 +22,7 @@ namespace GakuenMVC.Controllers
             var cart = Session["cart"] as ShoppingCart;
             if (cart == null) cart = new ShoppingCart();
             Session["cart"] = cart;
-            ViewBag.Orderlist = cart.Products;
+            ViewBag.Orderlist = cart.Products.Values.ToList();
 
             return View();
         }
@@ -33,7 +33,16 @@ namespace GakuenMVC.Controllers
         {
             var cart = Session["cart"] as ShoppingCart;
             if (cart == null) cart = new ShoppingCart();
-            cart.Products.Add(_productServiceGateway.Read(id));
+            if (cart.Products.ContainsKey(id) == false)
+            {
+                // it is not in the IDictionary
+                cart.Products.Add(id, _productServiceGateway.Read(id));
+            }
+            else
+            {
+                //it is in the IDictionary
+            }
+            
             Session["cart"] = cart;
             return RedirectToAction("Index");
         }
@@ -44,11 +53,11 @@ namespace GakuenMVC.Controllers
             var cart = Session["cart"] as ShoppingCart;
             if (cart == null) cart = new ShoppingCart();
             Session["cart"] = cart;
-            cart.Products.RemoveAll(x => x.Id == id);
+            cart.Products.Remove(id);
 
             ViewBag.Products = _productServiceGateway.Read();
 
-            ViewBag.Orderlist = cart.Products;
+            ViewBag.Orderlist = cart.Products.Values.ToList();
             Session["cart"] = cart;
 
             return RedirectToAction("Index");
@@ -80,9 +89,8 @@ namespace GakuenMVC.Controllers
         {
             var cart = Session["cart"] as ShoppingCart;
             if (cart == null) cart = new ShoppingCart();
-            
 
-            ORLImpirt = _orderListServiceGateway.Create(new OrderList() { ItemsList = cart.Products });
+            ORLImpirt = _orderListServiceGateway.Create(new OrderList() {ItemsList = cart.Products.Values.ToList() });
             new CodeMaker(ORLImpirt);
             cart.Products.Clear();
 

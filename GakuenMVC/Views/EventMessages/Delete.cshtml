@@ -26,6 +26,10 @@
         <dd>
             @Html.DisplayFor(model => model.Body)
         </dd>
+        
+        <dd style=display: inline-block class="img-rounded">
+            <img src="@Html.DisplayFor(modelItem => Model.ImageToHost.ImagePath)" class="img-rounded" width="30%" height="300" />
+        </dd>
 
     </dl>
 

@@ -7,7 +7,6 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Styles.Render("~/Content/HomePage.css")
-
     <script type="text/javascript">
         var appInsights = window.appInsights || function (config) {
             function r(config) { t[config] = function () { var i = arguments; t.queue.push(function () { t[config].apply(t, i) }) } } var t = { config: config }, u = document, e = window, o = "script", s = u.createElement(o), i, f; for (s.src = config.url || "//az416426.vo.msecnd.net/scripts/a/ai.0.js", u.getElementsByTagName(o)[0].parentNode.appendChild(s), t.cookie = u.cookie, t.queue = [], i = ["Event", "Exception", "Metric", "PageView", "Trace"]; i.length;) r("track" + i.pop()); return r("setAuthenticatedUserContext"), r("clearAuthenticatedUserContext"), config.disableExceptionTracking || (i = "onerror", r("_" + i), f = e[i], e[i] = function (config, r, u, e, o) { var s = f && f(config, r, u, e, o); return s !== !0 && t["_" + i](config, r, u, e, o), s }), t
@@ -32,34 +31,68 @@
                 </button>
             </div>
             <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li id="magic" style="font-size: 300%">@Html.ActionLink("Gakuen", "Index", "Home")</li>
-                        <li>@Html.ActionLink("Hjem", "Index", "Home")</li>
-                        <li>@Html.ActionLink("Om", "About", "Home")</li>
-                        <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
-                        <li>@Html.ActionLink("Nyheder", "Index", "NewsMessages")</li>
-                        <li>@Html.ActionLink("Køb", "Index", "Shop")</li>
-                        <li>@Html.ActionLink("Kviteringer", "OrderListList", "Shop")</li>
-                        <li>@Html.ActionLink("Confirmer", "Index", "ConfirmPayment")</li>
-                        <li>@Html.ActionLink("Plan", "Overview", "Schedules")</li>
-                        <li>@Html.ActionLink("Skema", "SchemaExampleView", "Schema")</li>
-
-                       <li>@Html.ActionLink("Brugere", "Index", "Users")</li>
-                    </ul>
+                <ul class="nav navbar-nav">
+                    <li id="magic" style="font-size: 300%">@Html.ActionLink("Gakuen", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Hjem", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Om", "About", "Home")</li>
+                    <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Nyheder", "Index", "NewsMessages")</li>
+                    <li>@Html.ActionLink("Køb", "Index", "Shop")</li>
+                    <li>@Html.ActionLink("Kviteringer", "OrderListList", "Shop")</li>
+                    <li>@Html.ActionLink("Confirmer", "Index", "ConfirmPayment")</li>
+                    <li>@Html.ActionLink("Plan", "Overview", "Schedules")</li>
+                    <li>@Html.ActionLink("Skema", "SchemaExampleView", "Schema")</li>
+                    <li>@Html.ActionLink("Brugere", "Index", "Users")</li>
+                </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
+
+    <div class="container">
+        @RenderSection("slideshow", false)
+        <div class="container">
+            <div id="content" class="img-rounded">
+                @RenderBody()
+            </div>
+            <div id="sidebar" class="img-rounded" style="text-align: center">
+                <p style="font-size: 150%">
+                    <b>-LOG IND-</b>
+                </p>
+                <form style="width: 80%; margin: 0 auto;">
+                    <div class="form-group">
+                        <label for="UserName">Brugernavn</label>
+                        <input type="text" class="form-control" id="UserName" placeholder="Brugernavn">
+                    </div>
+                    <div class="form-group">
+                        <label for="Password">Adgangskode</label>
+                        <input type="password" class="form-control" id="Password" placeholder="Adgangskode">
+                    </div>
+                    <div>
+                        <button style="width: auto" type="button" class="btn btn-danger form-control">LOG IND</button>
+                        <hr />
+                        <p>Kan ikke logge ind?</p>
+                        <p>Opret en bruger</p>
+                    </div>
+                </form>
+            </div>
+        </div>
         <hr />
-        <footer>
+        <div id="footer">
             <p style="text-align: center">
-                &copy; @DateTime.Now.Year Gakuen | Find os på 
+                &copy; @DateTime.Now.Year Gakuen | Find os på
                 <a href="https://www.facebook.com/" class="btn btn-default btn-xs"><b>f</b> Facebook</a>
             </p>
-        </footer>
+        </div>
     </div>
+
+    @*<hr />
+        <footer>
+            <p style="text-align: center">
+                &copy; @DateTime.Now.Year Gakuen | Find os på
+                <a href="https://www.facebook.com/" class="btn btn-default btn-xs"><b>f</b> Facebook</a>
+            </p>
+        </footer>*@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

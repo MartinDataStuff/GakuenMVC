@@ -23,12 +23,15 @@ namespace DLLGakuen.ServiceGateway
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
                 HttpResponseMessage response = client.PostAsJsonAsync("api/OrderLists", t).Result;
-                if (response.IsSuccessStatusCode)
-                {
+
+                response.EnsureSuccessStatusCode();
+
+                //if (response.IsSuccessStatusCode)
+                //{
                     return response.Content.ReadAsAsync<OrderList>().Result;
-                }
+                //}
             }
-            return null;
+            //return null;
         }
 
         public OrderList Read(int id)
