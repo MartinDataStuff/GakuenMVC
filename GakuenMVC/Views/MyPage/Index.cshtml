@@ -3,15 +3,50 @@
 @{
     ViewBag.Title = "Index";
 }
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
 
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #fe8686;
+    }
+</style>
 <h2>here is a list of all Produckts</h2>
 
-@{
-    foreach (OrderList Orders in ViewBag.AllOrders)
-    {
-        foreach (var Produckt in Orders.ItemsList)
+<table>
+    <tr>
+        <th>?</th>
+        <th>Name</th>
+        <th>Price</th>
+    </tr>
+
+    @{
+
+        foreach (OrderList orders in ViewBag.AllOrders)
         {
-            <h2>@Produckt.Name</h2>
+            foreach (Product produckt in orders.ItemsList)
+            {
+            <tr>
+                <td>
+                    <form>
+                        <button onclick="infoFunktion('@produckt.Info')">?</button>
+                    </form>
+                </td>
+                <td>@produckt.Name</td>
+                <td>@produckt.Price</td>
+            </tr>
+            }
         }
     }
-}
+</table>
+
+
