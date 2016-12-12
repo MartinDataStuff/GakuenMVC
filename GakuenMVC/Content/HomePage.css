@@ -78,7 +78,7 @@ body {
 
 #sidebar {
     position: absolute;
-    min-height: 300px;
+    min-height: 325px;
     top: 20px;
     bottom: 0;
     left: 80%;
@@ -87,7 +87,7 @@ body {
 }
 
 #content {
-    min-height: 300px;
+    min-height: 325px;
     width: 75%;
     height: 100%;
     margin: 20px 0 0 0;
@@ -101,6 +101,11 @@ body {
     margin: 20px 0 0 0;
     background: grey;
     z-index: 0;
+}
+
+#footer {
+    width: 100%;
+    margin: 0 0 0 0;
 }
 
 #left {
@@ -192,7 +197,7 @@ body {
         top: 0;
         left: 0;
     }
-/*--------SlidesShow Ends--------*/
+/*-SlidesShow Ends-*/
 
 /*Prevents selection*/
 .noselect {
@@ -201,6 +206,12 @@ body {
      -khtml-user-select: none; /* Konqueror */
        -moz-user-select: none; /* Firefox */
         -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
-                                  not supported by any browser */
+            user-select: none; /* Non-prefixed version, currently not supported by any browser */
+}
+/*-Prevents selection Ends-*/
+
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-top: 1px solid grey;
 }
