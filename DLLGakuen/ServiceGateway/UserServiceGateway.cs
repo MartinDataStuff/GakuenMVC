@@ -93,10 +93,9 @@ namespace DLLGakuen.ServiceGateway
                     new MediaTypeWithQualityHeaderValue("application/json"));
 
                 var response = client.PutAsJsonAsync($"/api/users/{t.Id}", t).Result;
-                if (response.IsSuccessStatusCode)
-                {
+              
                     return response.Content.ReadAsAsync<User>().Result;
-                }
+                
                 return t;
             }
         }

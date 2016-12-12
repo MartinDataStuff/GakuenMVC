@@ -319,7 +319,6 @@
     <Content Include="Views\Users\Create.cshtml" />
     <Content Include="Views\Users\Delete.cshtml" />
     <Content Include="Views\Users\Details.cshtml" />
-    <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\NewsMessages\Create.cshtml" />
     <Content Include="Views\NewsMessages\Delete.cshtml" />
@@ -369,9 +368,12 @@
     <Content Include="Views\Shop\OrderListList.cshtml" />
     <Content Include="Views\ConfirmPayment\Check.cshtml" />
     <Content Include="Views\MyPage\Index.cshtml" />
+    <Content Include="Views\Shop\BeforeBuy.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\UserFake\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

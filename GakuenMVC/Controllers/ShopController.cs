@@ -13,6 +13,7 @@ namespace GakuenMVC.Controllers
     {
         private readonly IServiceGateway<Product> _productServiceGateway = new DllFacade().GetProductServiceGateway();
         private readonly IServiceGateway<OrderList> _orderListServiceGateway = new DllFacade().GetOrderListServiceGateway();
+        private readonly IServiceGateway<User> _userServiceGateway = new DllFacade().GetUserServiceGateway();
         private static OrderList ORLImpirt = new OrderList();
         // GET: Shop
         public ActionResult Index()
@@ -62,7 +63,33 @@ namespace GakuenMVC.Controllers
 
             return RedirectToAction("Index");
         }
-        
+        // GET: Shop/BeforeBuy/5
+        public ActionResult BeforeBuy(int id)
+        {
+            User user = _userServiceGateway.Read(id);
+            List<User> uu = _userServiceGateway.Read();
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            return View(user);
+        }
+        // POST: Shop/BeforeBuy/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult BeforeBuy([Bind(Include = "Id,FirstName,LastName,Email,UserName,PhoneNr,AddressId,ScheduleId,Position")] User user)
+        {
+            if (ModelState.IsValid)
+            {
+                _userServiceGateway.Update(user);
+                return RedirectToAction("Index");
+            }
+
+            return View(user);
+        }
+
         // POST: Shop/Buylist
         [HttpPost]
         public ActionResult Buylist()
