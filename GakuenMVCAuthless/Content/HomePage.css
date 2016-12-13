@@ -1,0 +1,217 @@
+﻿@font-face {
+    font-family: 'magic'; /*a name to be used later*/
+    src: url('/fonts/MagicSchoolOne.ttf'); /*URL to font*/
+}
+
+#wrapper {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
+#slidewrap {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+}
+
+body {
+    background-color: #ededed;
+}
+
+.jumbotron {
+    background-color: #ededed !important;
+    color: #000000;
+}
+
+.body-content {
+    background-color: #ededed !important;
+}
+
+#magic {
+    font-family: magic;
+}
+
+
+.divimg {
+    position: relative;
+    width: 250px;
+    height: 300px;
+    margin-bottom: 5%;
+}
+
+    .divimg a {
+        display: inline-block;
+    }
+
+        .divimg a span {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 34%;
+            color: #ffffff;
+            background: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .divimg a img {
+            position: relative;
+            width: 250px;
+            height: 300px;
+        }
+
+        .divimg a:hover {
+            outline-style: dashed;
+            outline-width: 2px;
+            outline-color: red;
+        }
+
+
+/*Design...*/
+.container {
+    position: relative;
+    padding: 0 0 0 0;
+}
+
+#sidebar {
+    position: absolute;
+    min-height: 325px;
+    top: 20px;
+    bottom: 0;
+    left: 80%;
+    width: 20%;
+    background: #ffffff;
+}
+
+#content {
+    min-height: 325px;
+    width: 75%;
+    height: 100%;
+    margin: 20px 0 0 0;
+    background: #ffffff;
+}
+
+#header {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    margin: 20px 0 0 0;
+    background: grey;
+    z-index: 0;
+}
+
+#footer {
+    width: 100%;
+    margin: 0 0 0 0;
+}
+
+#left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: white;
+    letter-spacing: -1px;
+    opacity: 0.5;
+    width: 10%;
+    height: 300px;
+    text-align: left;
+    text-decoration: none;
+    z-index: 2;
+}
+#left p {
+    width: 10%;
+    height: 300px;
+    display: table-cell;
+    vertical-align:middle;
+    text-align:center;
+    color: #FFFFFF;
+    font-size: 300%
+}
+
+    #left:hover {
+        background: rgb(0, 0, 0); /* fallback color */
+        background: rgba(0, 0, 0, .3);
+        opacity: 1;
+    }
+
+#right {
+    position: absolute;
+    top: 0;
+    left: 90%;
+    color: white;
+    letter-spacing: -1px;
+    opacity: 0.5;
+    padding: 5px;
+    width: 10%;
+    height: 300px;
+    text-align: right;
+    text-decoration: none;
+    z-index: 2;
+}
+
+#right p {
+    width: 10%;
+    height: 300px;
+    display: table-cell;
+    vertical-align:middle;
+    text-align:center;
+    color: #FFFFFF;
+    font-size: 300%
+}
+
+    #right:hover {
+        background: rgb(0, 0, 0); /* fallback color */
+        background: rgba(0, 0, 0, .3);
+        opacity: 1;
+    }
+
+
+/*SlideShow*/
+.slide {
+    position: relative;
+    width: 100%;
+    height: 300px;
+}
+
+    .slide a {
+        display: inline-block;
+    }
+
+    .slide span {
+        position: absolute;
+        top: 0;
+        left: 30%;
+        font-size: 300%;
+        width: 70%;
+        height: 100%;
+        color: #ffffff;
+        background: rgb(0, 0, 0);
+        background: rgba(0, 0, 0, .5);
+    }
+
+    .slide img {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+/*-SlidesShow Ends-*/
+
+/*Prevents selection*/
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Chrome/Safari/Opera */
+     -khtml-user-select: none; /* Konqueror */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently not supported by any browser */
+}
+/*-Prevents selection Ends-*/
+
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-top: 1px solid grey;
+}

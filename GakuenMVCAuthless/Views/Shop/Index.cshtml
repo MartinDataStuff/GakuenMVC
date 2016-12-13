@@ -1,0 +1,85 @@
+﻿
+
+@{
+    ViewBag.Title = "BuyList";
+}
+
+<h2>BuyList</h2>
+
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #fe8686;
+    }
+</style>
+<table>
+    <tr>
+        <th>?</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Buy</th>
+    </tr>
+
+    @{
+
+        foreach (var pro in ViewBag.Products)
+        {
+            <tr>
+                <td>
+                    <form>
+                        <button onclick="infoFunktion('@pro.Info')">?</button>
+                    </form>
+                </td>
+                <td>@pro.Name</td>
+                <td>@pro.Price</td>
+                <td><a class="btn btn-success" href="/Shop/ConfirmBuy/@pro.Id">tilføj</a></td>
+            </tr>
+        }
+    }
+</table>
+<h2>Your List</h2>
+<table>
+    <tr>
+        <th>?</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Buy</th>
+    </tr>
+    @{
+        foreach (var pro in ViewBag.Orderlist)
+        {
+            <tr>
+                <td>
+                    <form>
+                        <button onclick="infoFunktion('@pro.Info')">?</button>
+                    </form>
+                </td>
+
+                <td>@pro.Name</td>
+                <td>@pro.Price</td>
+                <td><a class="btn btn-danger" href="/Shop/Remove/@pro.Id">slet</a></td>
+            </tr>
+        }
+    }
+
+    <form action="BeforeBuy" method="post">
+        <input class="btn btn-success" type="submit" value="Køb">
+    </form>
+    
+</table>
+<script>
+    function infoFunktion(blah) {
+        alert(blah);
+}
+</script>

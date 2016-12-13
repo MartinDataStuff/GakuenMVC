@@ -1,0 +1,71 @@
+﻿@using Microsoft.Ajax.Utilities
+@model DLLGakuen.Entity.NewsMessage
+@{
+    ViewBag.Title = "NewsFeed";
+}
+
+<body>
+    <div class="col-md-12">
+        <p style="right: 0; top: 0; position: absolute">@Model.DateTime.ToString("dd. MMMM yyyy")</p>
+        @{
+
+            if (Model.ImageToHost != null && Model.VideoToHost != null)
+            {
+                var path = Model.VideoToHost.VideoPath;
+
+                <img style="left: 0; top: 20px; position: absolute" src="@Html.DisplayFor(model => model.ImageToHost.ImagePath)" class="img-rounded" width="250" height="300" />
+
+                <div style="right: 0; top: 20px; position: absolute">
+                    <iframe width="533" height="300" src="https://www.youtube.com/embed/@path" class="img-rounded" frameborder="0" allowfullscreen></iframe>
+                </div>
+
+                <br />
+
+                <div style="margin-top: 300px;">
+                    <br />
+                    <p style="font-size: 125%; text-align: center;">
+                        <b>@Html.DisplayFor(model => model.Title)</b>
+                    </p>
+                    <p>@Html.DisplayFor(model => model.Body)</p>
+
+                </div>
+            }
+            else if (Model.ImageToHost != null && Model.VideoToHost == null)
+            {
+                <img style="left: 0; top: 0; position: absolute" src="@Html.DisplayFor(model => model.ImageToHost.ImagePath)" class="img-rounded" width="250" height="300" />
+                <div style="margin-left: 250px">
+                    <br />
+                    <p style="font-size: 125%; text-align: center;">
+                        <b>@Html.DisplayFor(model => model.Title)</b>
+                    </p>
+                    <p>@Html.DisplayFor(model => model.Body)</p>
+                </div>
+            }
+            else if (Model.ImageToHost == null && Model.VideoToHost != null)
+            {
+                var path = Model.VideoToHost.VideoPath;
+                <br/>
+                <div align="center">
+                    <iframe width="533" height="300" src="https://www.youtube.com/embed/@path" class="img-rounded" frameborder="0" allowfullscreen></iframe>
+                </div>
+                    <br />
+                    <p style="font-size: 125%; text-align: center;">
+                        <b>@Html.DisplayFor(model => model.Title)</b>
+                    </p>
+                    <p>@Html.DisplayFor(model => model.Body)</p>
+            }
+            else
+            {
+                <br/>
+                <p style="font-size: 125%; text-align: center;">
+                    <b>@Html.DisplayFor(model => model.Title)</b>
+                </p>
+                <p>@Html.DisplayFor(model => model.Body)</p>
+            }
+        }
+    </div>
+
+
+
+
+</body>
