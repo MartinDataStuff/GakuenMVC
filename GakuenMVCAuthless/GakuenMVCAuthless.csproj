@@ -307,7 +307,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Documents\GitHub\GakuenMVC\DLLGakuen\DLLGakuen.csproj">
+    <ProjectReference Include="..\DLLGakuen\DLLGakuen.csproj">
       <Project>{65543ce0-90da-41ee-8694-050338a24d86}</Project>
       <Name>DLLGakuen</Name>
     </ProjectReference>
