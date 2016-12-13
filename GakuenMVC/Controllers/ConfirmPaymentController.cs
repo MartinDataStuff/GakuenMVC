@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using DLLGakuen;
 using DLLGakuen.Entity;
 
-namespace GakuenMVCAuthless.Controllers
+namespace GakuenMVC.Controllers
 {
     public class ConfirmPaymentController : Controller
     {
@@ -26,7 +26,7 @@ namespace GakuenMVCAuthless.Controllers
                 ViewBag.Code = Code;
                 OrderList OrderList = _OrderListServiceGateway.Read().Find(x => x.PaidStringCode == Code);
                 ViewBag.Cash = OrderList.PriceToPay;
-                User theUser = UserCheck(OrderList);
+                User theUser = UserCheck(OrderList.PaidStringCode);
                 if (theUser.UsrName != null) { ViewBag.UserName = theUser.UsrName;} else { ViewBag.UserName = "ERROR NO Match";}
                 if (theUser.FirstName != null) { ViewBag.UserFirstName = theUser.FirstName; } else { ViewBag.UserFirstName = "ERROR NO Match"; }
                 if (theUser.LastName != null) { ViewBag.UserLastName = theUser.LastName; } else { ViewBag.UserLastName = "ERROR NO Match"; }
@@ -50,13 +50,13 @@ namespace GakuenMVCAuthless.Controllers
 
         }
 
-        private User UserCheck(OrderList orderList)
+        private User UserCheck(string PaidStringCode)
         {
             foreach (User user in _UserServiceGateway.Read())
             {
                 foreach (var order in user.OrderLists)
                 {
-                    if (order.PaidStringCode == orderList.PaidStringCode) {
+                    if (order.PaidStringCode == PaidStringCode) {
                          return user;
                     }
                 }
