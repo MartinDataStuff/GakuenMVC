@@ -368,8 +368,8 @@
     <Content Include="Views\Shop\OrderListList.cshtml" />
     <Content Include="Views\ConfirmPayment\Check.cshtml" />
     <Content Include="Views\MyPage\Index.cshtml" />
-    <Content Include="Views\Shop\BeforeBuy.cshtml" />
     <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Shop\BeforeBuy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

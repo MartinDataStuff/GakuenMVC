@@ -63,10 +63,13 @@ namespace GakuenMVC.Controllers
 
             return RedirectToAction("Index");
         }
-        // GET: Shop/BeforeBuy/5
-        public ActionResult BeforeBuy(int id)
+
+
+
+        // GET: Shop/BeforeBuy
+        public ActionResult BeforeBuy()
         {
-            User user = _userServiceGateway.Read(id);
+            User user = _userServiceGateway.Read(1);//this shall be user ide
             List<User> uu = _userServiceGateway.Read();
             if (user == null)
             {
@@ -74,21 +77,7 @@ namespace GakuenMVC.Controllers
             }
             return View(user);
         }
-        // POST: Shop/BeforeBuy/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult BeforeBuy([Bind(Include = "Id,FirstName,LastName,Email,UserName,PhoneNr,AddressId,ScheduleId,Position")] User user)
-        {
-            if (ModelState.IsValid)
-            {
-                _userServiceGateway.Update(user);
-                return RedirectToAction("Index");
-            }
 
-            return View(user);
-        }
 
         // POST: Shop/Buylist
         [HttpPost]
@@ -97,7 +86,7 @@ namespace GakuenMVC.Controllers
             var cart = Session["cart"] as ShoppingCart;
             if (cart == null) cart = new ShoppingCart();
 
-            ORLImpirt = _orderListServiceGateway.Create(new OrderList() {ItemsList = cart.Products.Values.ToList() });
+            ORLImpirt = _orderListServiceGateway.Create(new OrderList() { ItemsList = cart.Products.Values.ToList() });
             new CodeMaker(ORLImpirt);
             cart.Products.Clear();
 
@@ -105,6 +94,17 @@ namespace GakuenMVC.Controllers
 
             return RedirectToAction($"ListInfo/{ORLImpirt.Id}");
         }
+
+
+
+
+
+
+
+
+
+
+
         // GET: Shop/ListInfo
         public ActionResult ListInfo(int id)
         {

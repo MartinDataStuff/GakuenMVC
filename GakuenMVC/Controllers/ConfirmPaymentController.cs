@@ -11,6 +11,8 @@ namespace GakuenMVC.Controllers
     public class ConfirmPaymentController : Controller
     {
         private readonly IServiceGateway<OrderList> _OrderListServiceGateway = new DllFacade().GetOrderListServiceGateway();
+        private readonly IServiceGateway<User> _UserServiceGateway = new DllFacade().GetUserServiceGateway();
+
         // GET: ConfirmPayment
         public ActionResult Index()
         {
@@ -26,19 +28,44 @@ namespace GakuenMVC.Controllers
                 ViewBag.Code = Code;
                 OrderList OrderList = _OrderListServiceGateway.Read().Find(x => x.PaidStringCode == Code);
                 ViewBag.Cash = OrderList.PriceToPay;
-                ViewBag.UserName = OrderList.User.UsrName;
+                User theUser = UserCheck(OrderList);
+                
+                ViewBag.UserName = theUser.UsrName;
+                ViewBag.UserFirstName = theUser.FirstName;
+                ViewBag.UserLastName = theUser.LastName;
+                ViewBag.UserPhoneNr = theUser.PhoneNr;
+                ViewBag.UserPosition = theUser.Position;
             }
             else
             {
                 ViewBag.Code = "ERROR NO Match";
                 ViewBag.Cash = 00000;
-                ViewBag.UserName = new User();
+                ViewBag.UserName = "ERROR NO Match";
+                ViewBag.UserFirstName = "ERROR NO Match";
+                ViewBag.UserLastName = "ERROR NO Match";
+                ViewBag.UserPhoneNr = "ERROR NO Match";
+                ViewBag.UserPosition = "ERROR NO Match";
             }
 
 
             return View();
 
         }
+
+        private User UserCheck(OrderList orderList)
+        {
+            foreach (User user in _UserServiceGateway.Read())
+            {
+                foreach (var order in user.OrderLists)
+                {
+                    if (order == orderList) {
+                        return user;
+                    }
+                }
+            }
+            return null;
+        }
+
         // POST: ConfirmPayment/Validate/5
         [HttpPost]
         public ActionResult Validate(string Code, FormCollection collection)
