@@ -1,4 +1,6 @@
 ﻿using System.Web.Mvc;
+using System;
+using System.Collections.Generic;
 using DLLGakuen;
 using DLLGakuen.Entity;
 
@@ -25,22 +27,22 @@ namespace GakuenMVCAuthless.Controllers
                 OrderList OrderList = _OrderListServiceGateway.Read().Find(x => x.PaidStringCode == Code);
                 ViewBag.Cash = OrderList.PriceToPay;
                 User theUser = UserCheck(OrderList);
-                
-                ViewBag.UserName = theUser.UsrName;
-                ViewBag.UserFirstName = theUser.FirstName;
-                ViewBag.UserLastName = theUser.LastName;
-                ViewBag.UserPhoneNr = theUser.PhoneNr;
-                ViewBag.UserPosition = theUser.Position;
+                if (theUser.UsrName != null) { ViewBag.UserName = theUser.UsrName;} else { ViewBag.UserName = "ERROR NO Match";}
+                if (theUser.FirstName != null) { ViewBag.UserFirstName = theUser.FirstName; } else { ViewBag.UserFirstName = "ERROR NO Match"; }
+                if (theUser.LastName != null) { ViewBag.UserLastName = theUser.LastName; } else { ViewBag.UserLastName = "ERROR NO Match"; }
+                if (theUser.PhoneNr != null) { ViewBag.UserPhoneNr = theUser.PhoneNr; } else { ViewBag.UserPhoneNr = "ERROR NO Match"; }
+                if (theUser.Position != null) { ViewBag.UserPosition = theUser.Position; } else { ViewBag.UserPosition = "ERROR NO Match"; }
+
             }
             else
             {
-                ViewBag.Code = "ERROR NO Match";
+                ViewBag.Code = "ERROR Code NO Match";
                 ViewBag.Cash = 00000;
-                ViewBag.UserName = "ERROR NO Match";
-                ViewBag.UserFirstName = "ERROR NO Match";
-                ViewBag.UserLastName = "ERROR NO Match";
-                ViewBag.UserPhoneNr = "ERROR NO Match";
-                ViewBag.UserPosition = "ERROR NO Match";
+                ViewBag.UserName = "ERROR Code NO Match";
+                ViewBag.UserFirstName = "ERROR Code NO Match";
+                ViewBag.UserLastName = "ERROR Code NO Match";
+                ViewBag.UserPhoneNr = "ERROR Code NO Match";
+                ViewBag.UserPosition = "ERROR Code NO Match";
             }
 
 
@@ -54,8 +56,8 @@ namespace GakuenMVCAuthless.Controllers
             {
                 foreach (var order in user.OrderLists)
                 {
-                    if (order == orderList) {
-                        return user;
+                    if (order.PaidStringCode == orderList.PaidStringCode) {
+                         return user;
                     }
                 }
             }
